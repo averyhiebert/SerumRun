@@ -55,19 +55,11 @@ visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 bbcode_enabled = true
-bbcode_text = "You start your journey.
+bbcode_text = "[center]You start your journey.[center]
 "
 text = "You start your journey.
 "
 scroll_following = true
-
-[node name="Credits idk" type="RichTextLabel" parent="UILayer/VBoxContainer/TabContainer"]
-visible = false
-margin_right = 40.0
-margin_bottom = 40.0
-bbcode_enabled = true
-bbcode_text = "[shake rate=8 level=8]Test text[/shake]"
-text = "Test text"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2

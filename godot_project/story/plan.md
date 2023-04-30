@@ -5,7 +5,6 @@
 - Consistent styling for GUI
 
 ## Nice:
-- change party member names?
 - better win/lose screens (at least make text shake or something)
     - death messages can also shake?
 - map? As a streeeetch goal?

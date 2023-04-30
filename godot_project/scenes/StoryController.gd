@@ -95,7 +95,7 @@ func _continued(text, tags):
 	#text_before_choices = text_target.bbcode_text # Save state prior to adding buttons
 	
 	if do_log:
-		event_log.append_bbcode(formatting % text)
+		event_log.append_bbcode("[center]%s[/center]" % (formatting % text))
 	
 	# Here you could yield for an hypothetical signal, before continuing.
 	# yield(self, "event")
