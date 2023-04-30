@@ -77,16 +77,16 @@ Select {selections_remaining} {|more} {selections_remaining > 1:items|item} befo
 === endings ===
 
 = out_of_time
-Unfortunately, you did not get to the town fast enough to avert the epidemic.
+Unfortunately, you did not get to the town fast enough to avert the epidemic. # bad
+Thousands will perish. # bad # severe
 {LIST_COUNT(dead) > 0:
-    {listNamesWithCommas(dead,"")} died in vain.
+    {listNamesWithCommas(dead,"")} died in vain. # bad # severe
 }
-(BAD ENDING) # bad
 -> END
 
 = all_dead
-Your entire party is dead. The serum is lost.  Thousands will perish.
-(BAD ENDING) # bad
+Your entire party is dead. The serum is lost. # bad
+Thousands will perish. # bad # severe
 -> END
 
 = win
@@ -94,9 +94,8 @@ Your entire party is dead. The serum is lost.  Thousands will perish.
 // TODO Check how much serum is intact?
 // TODO Summarize how many party members died on the way
 At last, you arrive at your destination with the serum safely intact.
-The epidemic is averted!
+The epidemic is averted! # good
 {LIST_COUNT(dead) > 0:
-    {listNamesWithCommas(dead,"")} may have perished, but they will be remembered as {LIST_COUNT(dead) > 1:heroes|a hero}.
+    {listNamesWithCommas(dead,"")} may have perished, but they will be remembered as {LIST_COUNT(dead) > 1:heroes|a hero}. # good
 }
-(GOOD ENDING) # good
 -> END
