@@ -1,0 +1,13 @@
+[remap]
+
+importer="inkgd.ink"
+type="Resource"
+path="res://.import/constants.ink-46e1bc4d4b586b696b7981782c7d5972.res"
+
+[deps]
+
+source_file="res://story/constants.ink"
+dest_files=[ "res://.import/constants.ink-46e1bc4d4b586b696b7981782c7d5972.res" ]
+
+[params]
+

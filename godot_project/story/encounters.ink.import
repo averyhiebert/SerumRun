@@ -1,0 +1,13 @@
+[remap]
+
+importer="inkgd.ink"
+type="Resource"
+path="res://.import/encounters.ink-d96675be2640e39d606cab528b738675.res"
+
+[deps]
+
+source_file="res://story/encounters.ink"
+dest_files=[ "res://.import/encounters.ink-d96675be2640e39d606cab528b738675.res" ]
+
+[params]
+

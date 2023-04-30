@@ -47,32 +47,35 @@ You arrive at a small roadhouse. <>
 {fire_lit:A fire crackles in the fireplace.|The fireplace is unlit and the room is cold and damp.}  {has_bed: This room is equipped with adequate bedding for your whole party.}  {has_piano: There is {a tack piano|an upright piano} in the corner of the room.}
 <- standard_menu_options(-> options)
 <- get_additional_encounters(-> options)
-+ {not fire_lit} [Light a fire (1 hour)]
++ {not fire_lit} [Light a fire. (1 hour)]
     After spending some time chopping wood you are able to light a fire in the fireplace.
     ~fire_lit = true
     ~hours_remaining -= 1
     -> confirm ->
-+ {fire_lit}[Rest by the fire (1 hour)]
++ {fire_lit}[Rest by the fire. (1 hour)]
     -> activity.warm_rest ->
     ~hours_remaining -= 1
-+ {not ate} [Eat a cold meal (1 hour)]
++ {not ate} [Eat a cold meal. (1 hour)]
     -> activity.eat_meal(false) ->
     ~hours_remaining -= 1
-+ {not ate}{fire_lit} [Eat a warm meal (2 hours)]
++ {not ate}{fire_lit} [Eat a warm meal. (2 hours)]
     -> activity.eat_meal(true) ->
     ~hours_remaining -= 2
-+ {not slept}{has_bed or (inventory has bedroll)} [Get a good night's sleep (6 hours)]
++ {not slept}{has_bed} [Get a good night's sleep. (6 hours)]
     -> activity.sleep(fire_lit) ->
     ~hours_remaining -= 6
-+ {not played_music}{inventory has harmonica}{not has_piano} [Play the harmonica (1 hour)]
++ {not slept}{inventory has bedroll}{not has_bed} [Get a good night's sleep (using bedroll). (6 hours)]
+    -> activity.sleep(fire_lit) ->
+    ~hours_remaining -= 6
++ {not played_music}{inventory has harmonica}{not has_piano} [Play the harmonica. (1 hour)]
     // TODO better handling of various recreation items.
     -> activity.play_harmonica ->
     ~hours_remaining -= 1
-+ {not played_music}{has_piano} [Play the piano (1 hour)]
++ {not played_music}{has_piano} [Play the piano. (1 hour)]
     // TODO better handling of various recreation items.
     -> activity.play_piano ->
     ~hours_remaining -= 1
-+ [Get back on the road]
++ [Get back on the road.]
     -> choose_next_destination
 - -> options
 

@@ -1,0 +1,13 @@
+[remap]
+
+importer="inkgd.ink"
+type="Resource"
+path="res://.import/externals.ink-325ba8437803c27105f3829cdcd94e80.res"
+
+[deps]
+
+source_file="res://story/externals.ink"
+dest_files=[ "res://.import/externals.ink-325ba8437803c27105f3829cdcd94e80.res" ]
+
+[params]
+

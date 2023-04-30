@@ -32,7 +32,7 @@ The journey will be perilous. Godspeed, brave travellers.
   -> choose_next_destination
 }
 # CLEAR
-Select {selections_remaining} more {selections_remaining > 1:items|item} before you set out:
+Select {selections_remaining} {|more} {selections_remaining > 1:items|item} before you set out:
 // TODO Populate this menu dynamically.
 * {not (inventory has shotgun)}[Shotgun]
     ~inventory += shotgun

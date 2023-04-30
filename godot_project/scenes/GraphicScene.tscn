@@ -1,0 +1,14 @@
+[gd_scene format=2]
+
+[node name="GraphicScene" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 512, 299 )
+current = true
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2( 246, -18 )
+polygon = PoolVector2Array( 224, 124, 315, 192, 207, 322, 302, 368, 374, 305, 415, 369, 378, 438, 177, 408, 93, 397, 127, 295, 194, 282 )
+
+[node name="Polygon2D2" type="Polygon2D" parent="."]
+polygon = PoolVector2Array( 26, 18, 671, 56, 991, 15, 1003, 577, 537, 564, 31, 579, 21, 207, 12, 603, 525, 577, 1019, 597, 1047, 279, 1010, -12, 676, 34, 85, 5, 19, -10, 11, 179 )

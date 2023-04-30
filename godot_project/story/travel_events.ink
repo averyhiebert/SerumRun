@@ -35,7 +35,7 @@
 === get_dysentery ===
 {select_from(party - dysentery):
     ~dysentery += WHO
-    {name(WHO)} seems to have contracted dysentery.
+    {name(WHO)} seems to have contracted dysentery. # bad
 -else:
     Everyone in your party continues to have dysentery.
 }
@@ -67,7 +67,7 @@
     ~loser = person1
 -
 ~agitated += loser
-{name(loser)} is still bitter. # bad
+{name(loser)} didn't like that. # bad
 ->->
 
 === sled_bump ===

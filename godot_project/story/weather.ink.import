@@ -1,0 +1,13 @@
+[remap]
+
+importer="inkgd.ink"
+type="Resource"
+path="res://.import/weather.ink-cab0a7fd28bfb86ac154fe29ea8fa458.res"
+
+[deps]
+
+source_file="res://story/weather.ink"
+dest_files=[ "res://.import/weather.ink-cab0a7fd28bfb86ac154fe29ea8fa458.res" ]
+
+[params]
+

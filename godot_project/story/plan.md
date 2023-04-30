@@ -1,27 +1,26 @@
 
 # Roadmap
+- Start on Godot/graphics...
+    - minimum background: mountains, forest(?), roadhouse?
+    - minimum weather: blizzard, northern lights
 - Implement using whiskey etc. while traveling?
     - lower priority
     - idea: implement as unique items, not quantities. (more streamlined)
     - perhaps there is a probabilistic chance of being consumed?
-- TESTABLE VERSION OUT TO TESTERS
-
-- then start on Godot/graphics...
-    - minimum background: mountains, forest(?), roadhouse?
-    - minimum weather: blizzard, northern lights
 - map selection screen?
     - at very least, should have a viewable map
 - better starting loadout selection?
 - polish!
     - clear up "you" vs. party members confusion?
     - consistency regarding whether options have . or not
+    - make deaths more attention-grabbing
 - balancing!
 - more content!
 
 
 # Event ideas
 
-## Roadhouse events?
+## Roadhouse/landmark events?
  - one empty/broken into by a polar bear
  - one with gambling?
     - wager one of your items for one of theirs
@@ -31,25 +30,19 @@
     - or simply entirely missing?
  - something supernatural/spooky
  - someone telling a tall tale
- - reference to Northwest Passage
  - reference to The Cremation of Sam McGee
  - references to Chaplin film (now public domain)?
- - spooky nightmares?
+ - spooky nightmares? / haunted house
+ - choose whether to investigate or shoot at something outside.
+ - something spooky in a cave (CAVE DOUBLE)
+    - one of the double shrinks from the bible in your hand?
 
 ## Travel events?
- - can hit things if lamp not turned on
- - spooky things in the darkness?
- - pack of wolves
  - icy lake
  - fallen tree
  - blizzard, obviously
- - northern lights (good)
- - northern lights (bad/spooky)
- - mysterious noises in the forest
  - find the remains of ill-fated travelers before you?
- - long-forgotten, lonely cairn of stones?
  - something that lures someone off into the forest, never to return
- - something with RCMP?
 
 ## Mechanics
 

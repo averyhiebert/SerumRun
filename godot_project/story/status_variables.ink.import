@@ -1,0 +1,13 @@
+[remap]
+
+importer="inkgd.ink"
+type="Resource"
+path="res://.import/status_variables.ink-5f33271d36a2a1bc142258b8159d77d6.res"
+
+[deps]
+
+source_file="res://story/status_variables.ink"
+dest_files=[ "res://.import/status_variables.ink-5f33271d36a2a1bc142258b8159d77d6.res" ]
+
+[params]
+

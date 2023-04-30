@@ -134,7 +134,7 @@ Outside the building, two roughly human-sized objects are buried under freshly-f
     ~dead_body_seen()
     -> options
 * {inventory has lamp}[Shine a light inside.]
-    You shine your lamp through the door and see a large polar bear, its fur spattered with blood, sleeping in a corner.
+    You shine your lamp through the door and see a large polar bear, its jaws covered in blood, sleeping in a corner.
     -> options
 * [Leave immediately.]
     You decide to get the hell outta there.
