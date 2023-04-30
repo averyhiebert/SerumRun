@@ -187,7 +187,7 @@ func refresh_info_tab():
 	#info_tab.append_bbcode("[center]%s[/center]\n\n" % str(_ink_player.get_variable("inventory")))
 	info_tab.append_bbcode("%s\n\n" % str(_ink_player.get_variable("inventory")))
 	
-	info_tab.append_bbcode("[center][u]Party Member Status[/u][/center]\n\n")
+	info_tab.append_bbcode("[center][u]Party Member Status[/u][/center]\n")
 	
 	var conditions = [
 		"cold","tired","hungry",
@@ -211,8 +211,8 @@ func refresh_info_tab():
 		#var risk_of_death = _ink_player.evaluate_function("risk_of_death",[pm]).return_value
 		#if risk_of_death:
 		#	info_tab.append_bbcode("[color=red][u]%s:[/u][/color]\t" % _party_member_name(pm))
-		info_tab.append_bbcode("[url=%s]%s[/url]:\t" % [pm,_party_member_name(pm)])
-		info_tab.append_bbcode("%s\n\n" % infostring)
+		info_tab.append_bbcode("\n[url=%s]%s[/url]:  " % [pm,_party_member_name(pm)])
+		info_tab.append_bbcode("%s\n" % infostring)
 
 func _on_TabContainer_tab_changed(tab):
 	# Populate the info t

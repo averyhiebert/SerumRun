@@ -23,7 +23,7 @@ INCLUDE weather.ink
 A remote arctic town is facing an impending diptheria outbreak.
 All of the town's antitoxin serum is expired.
 The only way to get the serum to them in time is by dogsled.
-The journey will be perilous. Godspeed, brave travellers.
+The journey will be perilous. Godspeed.
 + [Start your journey...]
   -> select_starting_inventory(2)
 

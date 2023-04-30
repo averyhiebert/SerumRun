@@ -1,4 +1,13 @@
-[gd_resource type="Theme" load_steps=5 format=2]
+[gd_resource type="Theme" load_steps=8 format=2]
+
+[ext_resource path="res://assets/font/main_font.tres" type="DynamicFont" id=1]
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.109804, 0.14902, 0.219608, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.109804, 0.14902, 0.219608, 1 )
@@ -16,7 +25,7 @@ content_margin_left = 10.0
 content_margin_right = 10.0
 content_margin_top = 5.0
 content_margin_bottom = 5.0
-bg_color = Color( 0.223529, 0.439216, 0.478431, 1 )
+bg_color = Color( 0.137255, 0.286275, 0.364706, 1 )
 border_width_right = 2
 border_color = Color( 0.854902, 0.94902, 0.913725, 1 )
 
@@ -29,11 +38,23 @@ bg_color = Color( 0.109804, 0.14902, 0.219608, 1 )
 border_width_right = 2
 border_color = Color( 0.854902, 0.94902, 0.913725, 1 )
 
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.109804, 0.14902, 0.219608, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.137255, 0.286275, 0.364706, 1 )
+
 [resource]
+Panel/styles/panel = SubResource( 6 )
 RichTextLabel/colors/default_color = Color( 0.854902, 0.94902, 0.913725, 1 )
+RichTextLabel/fonts/normal_font = ExtResource( 1 )
 RichTextLabel/styles/normal = SubResource( 1 )
-TabContainer/colors/font_color_bg = Color( 0.584314, 0.878431, 0.8, 1 )
+TabContainer/colors/font_color_bg = Color( 0.854902, 0.94902, 0.913725, 1 )
 TabContainer/colors/font_color_fg = Color( 0.854902, 0.94902, 0.913725, 1 )
+TabContainer/fonts/font = ExtResource( 1 )
 TabContainer/styles/panel = SubResource( 4 )
 TabContainer/styles/tab_bg = SubResource( 3 )
 TabContainer/styles/tab_fg = SubResource( 5 )
+WindowDialog/styles/panel = SubResource( 7 )
