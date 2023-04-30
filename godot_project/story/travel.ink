@@ -6,6 +6,7 @@ VAR current_location = start_location
 
 === choose_next_destination ===
 # CLEAR
+~currently_moving = true
 You head {out|back out} into the endless night.
 Where to next?
   {current_location:
@@ -85,8 +86,8 @@ Where to next?
 -> check_loss ->
 
 - (options)
-{~You continue past miles of inhospitable landscape.|The harsh and unforgiving landscape rushes past as you continue on your way.|Imposing scenery passes you by; it's too cold for you to appreciate the hostile beauty of the Arctic.|There isn't a breath in this land of death as you hurry, horror-driven.|There is no sound but the heavy breathing of the dogs.} <>
--> describe_weather ->
+{~You continue past miles of inhospitable landscape.|The harsh and unforgiving landscape rushes past as you continue on your way.|Imposing scenery passes you by; it's too cold for you to appreciate the hostile beauty of the Arctic.|There isn't a breath in this land of death as you hurry, horror-driven.|There is no sound but the heavy breathing of the dogs.}
+-> describe_weather -> 
 Only {hours_remaining} hours remain.
 <- standard_menu_options(->options)
 + [Continue...]

@@ -2,15 +2,13 @@
 # Roadmap
 
 ## Must have
-- Party member stats page
 - Consistent styling for GUI
 
 ## Nice:
-- map?
+- change party member names?
 - better win/lose screens (at least make text shake or something)
     - death messages can also shake?
-- change party member names?
-- Slightly better starting loadout selection?
+- map? As a streeeetch goal?
 - polish!
     - clear up "you" vs. party members confusion?
     - consistency regarding whether options have . or not
@@ -53,23 +51,3 @@
  - find the remains of ill-fated travelers before you?
  - something that lures someone off into the forest, never to return
 
-## Mechanics
-
-Hunger, tiredness, cold are triggered once per turn when traveling.
-
-### Hunger
-May become more hungry if have not eaten recently. 
-Meals/sourdough refill 1 level
-
-### Tiredness
-May become more tired if not rested recently.  Sleep resets tiredness.
-
-### Coldness
-Always can become cold. Sleeping in a cold room is worse.  Resting by the
-fire, eating a hot meal, sleeping in warm room all reset a coldness level.
-
-### Injuries/terrified/other status effects
-Only triggered by events, cured by recreation/whiskey/other items.
-
-### Lose conditions
-Enough bad status effects and party members may die or abandon the party.

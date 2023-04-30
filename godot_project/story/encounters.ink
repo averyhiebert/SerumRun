@@ -145,7 +145,7 @@ Outside the building, two roughly human-sized objects are buried under freshly-f
 ~select_from(party)
 {name(WHO)} enters the building, waking the giant polar bear sleeping in a corner.  It rises up to a truly staggering height, growling and baring its sharp teeth.
 * {LIST_COUNT(party) > 1}[Leave {name(WHO)} and run.]
-    The rest of the party runs, leaving {name(WHO)} to die. # bad
+    The rest of the party runs, leaving {name(WHO)} to die. # bad # severe
     ~kill(WHO)
     -> confirm ->
     -> next_skip ->
@@ -163,7 +163,7 @@ Outside the building, two roughly human-sized objects are buried under freshly-f
         // TODO Some chance of success?
         ~select_from(party)
         Amazingly, you kill the bear.
-        But {name(WHO)} dies in the process. # bad
+        But {name(WHO)} dies in the process. # bad # severe
     }
 -
 -> confirm ->

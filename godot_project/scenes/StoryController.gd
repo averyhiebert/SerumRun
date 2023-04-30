@@ -16,6 +16,13 @@ onready var info_tab:RichTextLabel = get_node("UILayer/VBoxContainer/TabContaine
 onready var graphic_scene = $UILayer/VBoxContainer/ViewportContainer/Viewport/GraphicScene
 
 var text_before_choices = ""
+
+var player_names = {
+	"p1": "Alice",
+	"p2": "Bob",
+	"p3": "Charlie",
+	"p4": "Devon"
+}
 # ############################################################################ #
 # Lifecycle
 # ############################################################################ #
@@ -25,6 +32,8 @@ func _ready():
 	text_target.bbcode_text = ""
 	text_target.clear()
 	text_target.connect("meta_clicked", self, "_select_choice")
+	
+	info_tab.connect("meta_clicked", self, "_info_tab_clicked")
 	
 	# Adds the player to the tree.
 	add_child(_ink_player)
@@ -71,7 +80,10 @@ func _continued(text, tags):
 		text_target.bbcode_text = ""
 		text_target.clear()
 	
-	if "good" in tags:
+	if "bad" in tags and "severe" in tags:
+		do_log = true
+		formatting = "[color=red][shake rate=8 level=8]%s[/shake][/color]"
+	elif "good" in tags:
 		do_log = true
 		formatting = "[color=green]%s[/color]"
 	elif "bad" in tags:
@@ -80,7 +92,7 @@ func _continued(text, tags):
 	text_target.append_bbcode(formatting % text)
 	
 	# Note: not working at all, not sure why
-	text_before_choices = text_target.bbcode_text # Save state prior to adding buttons
+	#text_before_choices = text_target.bbcode_text # Save state prior to adding buttons
 	
 	if do_log:
 		event_log.append_bbcode(formatting % text)
@@ -95,6 +107,7 @@ func _continued(text, tags):
 # ############################################################################ #
 
 func _prompt_choices(choices):
+	
 	text_target.append_bbcode("\n")
 	if !choices.empty():
 		var index = 0
@@ -129,18 +142,20 @@ func _select_choice(index):
 func _bind_externals():
 	_ink_player.bind_external_function("name", self, "_party_member_name")
 
+# Lets Ink access custom player names
 func _party_member_name(party_member):
 	var id = str(party_member)
-	# TODO Properly set/get names
-	var names = {
-		"p1": "Alice",
-		"p2": "Bob",
-		"p3": "Charlie",
-		"p4": "Devon"
-	}
-	if id in names:
-		return names[id]
+	
+	if id in player_names:
+		return player_names[id]
 	return "Missingno"
+
+# While we're at it, updating names:
+func _on_RenameDialog_name_changed(who, new_name):
+	if (who in player_names):
+		# TODO Maybe sanitize?
+		player_names[who] = new_name
+		refresh_info_tab()
 
 
 # Uncomment to observe the variables from your ink story.
@@ -150,49 +165,58 @@ func _observe_variables():
 	_ink_player.observe_variables(["currently_moving"], self, "_moving_changed")
 #
 
-func _weather_changed(variable_name,new_value):
-	# TODO Use signal instead
+func _weather_changed(_variable_name,new_value):
+	# TODO Use signals instead
 	graphic_scene.change_weather(str(new_value))
 
-func _moving_changed(variable_name,new_value):
+func _moving_changed(_variable_name,new_value):
 	print(new_value == true)
 	graphic_scene.set_moving(new_value)
 	
 
+func _info_tab_clicked(who):
+	print("%s was clicked" % who)
+	# TODO properly use signals
+	var current_name = _party_member_name(who)
+	$CanvasLayer/RenameDialog.activate(who, current_name)
 
+# Refresh the info tab
+func refresh_info_tab():
+	info_tab.clear()
+	info_tab.append_bbcode("[center][u]Inventory[/u][/center]\n\n")
+	#info_tab.append_bbcode("[center]%s[/center]\n\n" % str(_ink_player.get_variable("inventory")))
+	info_tab.append_bbcode("%s\n\n" % str(_ink_player.get_variable("inventory")))
+	
+	info_tab.append_bbcode("[center][u]Party Member Status[/u][/center]\n\n")
+	
+	var conditions = [
+		"cold","tired","hungry",
+		"dysentery","broken_leg","hypothermic",
+		"exhausted","starving","broken_nose",
+		"in_pain","traumatized","terrified",
+		"stressed","agitated","bruised",
+		"guilty"
+	]
+	for pm in ["p1","p2","p3","p4"]:
+		var status_effects = [] # Check which effects this party member has
+		for condition in conditions:
+			var inklist = _ink_player.get_variable(condition)
+			# Bad hack, but the API for ink lists isn't documented : (
+			#  and I don't have time to look up the source code
+			if pm in str(inklist):
+				status_effects.append(condition.replace("_"," "))
+		var infostring = PoolStringArray(status_effects).join(", ")
+		
+		# Results in bizarre bug, for some reason.
+		#var risk_of_death = _ink_player.evaluate_function("risk_of_death",[pm]).return_value
+		#if risk_of_death:
+		#	info_tab.append_bbcode("[color=red][u]%s:[/u][/color]\t" % _party_member_name(pm))
+		info_tab.append_bbcode("[url=%s]%s[/url]:\t" % [pm,_party_member_name(pm)])
+		info_tab.append_bbcode("%s\n\n" % infostring)
 
 func _on_TabContainer_tab_changed(tab):
 	# Populate the info t
 	if (tab == 1):
 		# We have switched to the info tab, so let's populate it.
-		info_tab.clear()
-		info_tab.append_bbcode("[center][u]Inventory[/u][/center]\n\n")
-		info_tab.append_bbcode("[center]%s[/center]\n\n" % str(_ink_player.get_variable("inventory")))
-		
-		info_tab.append_bbcode("[center][u]Party Member Status[/u][/center]\n\n")
-		var party_members = _ink_player.get_variable("party")
-		
-		var conditions = [
-			"cold","tired","hungry",
-			"dysentery","broken_leg","hypothermic",
-			"exhausted","starving","broken_nose",
-			"in_pain","traumatized","terrified",
-			"stressed","agitated","bruised",
-			"guilty"
-		]
-		for pm in ["p1","p2","p3","p4"]:
-			var status_effects = [] # Check which effects this party member has
-			for condition in conditions:
-				var inklist = _ink_player.get_variable(condition)
-				# Bad hack, but the API for ink lists isn't documented : (
-				#  and I don't have time to look up the source code
-				if pm in str(inklist):
-					status_effects.append(condition.replace("_"," "))
-			var infostring = PoolStringArray(status_effects).join(", ")
-			
-			# Results in bizarre bug, for some reason.
-			#var risk_of_death = _ink_player.evaluate_function("risk_of_death",[pm]).return_value
-			#if risk_of_death:
-			#	info_tab.append_bbcode("[color=red][u]%s:[/u][/color]\t" % _party_member_name(pm))
-			info_tab.append_bbcode("[u]%s:[/u]\t" % _party_member_name(pm))
-			info_tab.append_bbcode("%s\n\n" % infostring)
+		refresh_info_tab()
+

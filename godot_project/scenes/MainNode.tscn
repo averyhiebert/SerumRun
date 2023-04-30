@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/GraphicScene.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/StoryController.gd" type="Script" id=2]
+[ext_resource path="res://scenes/RenameDialog.tscn" type="PackedScene" id=3]
 
 [node name="MainNode" type="Node2D"]
 script = ExtResource( 2 )
@@ -60,4 +61,19 @@ text = "You start your journey.
 "
 scroll_following = true
 
+[node name="Credits idk" type="RichTextLabel" parent="UILayer/VBoxContainer/TabContainer"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+bbcode_enabled = true
+bbcode_text = "[shake rate=8 level=8]Test text[/shake]"
+text = "Test text"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="RenameDialog" parent="CanvasLayer" instance=ExtResource( 3 )]
+visible = false
+
 [connection signal="tab_changed" from="UILayer/VBoxContainer/TabContainer" to="." method="_on_TabContainer_tab_changed"]
+[connection signal="name_changed" from="CanvasLayer/RenameDialog" to="." method="_on_RenameDialog_name_changed"]

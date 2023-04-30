@@ -15,7 +15,7 @@ EXTERNAL name(person)
         ~return "Devon"
     }
 
-// Stuff used by godot
+// Stuff used by godot ========================================================
 
 // This is used to communicate with Godot, so I've put it here as well:
 VAR currently_moving = false
@@ -35,3 +35,8 @@ VAR currently_moving = false
         ~person = p4
     }
     ~return total_health(person) >= LOW_DEATH_THRESHOLD
+
+# Some other notes about API stuff:
+#  - Options formatted like ((this)) are not displayed to player
+#  - Tags # good, bad, severe control text display
+#  - currently_moving and weather are observed by the engine

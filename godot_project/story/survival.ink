@@ -289,7 +289,7 @@ You take a break to play the piano and dance, lightening spirits somewhat.
     {died:
         // TODO Better death messages
         //Alas, {name(person)} has died of their various ailments! # bad
-        {death_message(person)} # bad
+        {death_message(person)} # bad # severe
         ~kill(person)
     }
 
