@@ -22,7 +22,7 @@ INCLUDE weather.ink
 === start ===
 A remote arctic town is facing an impending diptheria outbreak.
 All of the town's antitoxin serum is expired.
-The only way to get the serum to the town in time is by dogsled.
+The only way to get the serum to them in time is by dogsled.
 The journey will be perilous. Godspeed, brave travellers.
 + [Start your journey...]
   -> select_starting_inventory(2)
@@ -51,7 +51,7 @@ Select {selections_remaining} {|more} {selections_remaining > 1:items|item} befo
 
 
 === standard_menu_options(-> back) ===
-+ {SHOW_TEXT_MENU}[(Check party status)]
++ {SHOW_TEXT_MENU}[((Check party status))]
     # CLEAR
     Inventory: {inventory}
     ~for_each(party,->summarize_status)
@@ -65,8 +65,10 @@ Select {selections_remaining} {|more} {selections_remaining > 1:items|item} befo
 === check_loss ===
 {
   - hours_remaining < 1:
+    ~currently_moving = false
     -> endings.out_of_time
   - LIST_COUNT(party) == 0:
+    ~currently_moving = false
     -> endings.all_dead
 }
 ->->
@@ -88,6 +90,7 @@ Your entire party is dead. The serum is lost.  Thousands will perish.
 -> END
 
 = win
+~currently_moving = false
 // TODO Check how much serum is intact?
 // TODO Summarize how many party members died on the way
 At last, you arrive at your destination with the serum safely intact.

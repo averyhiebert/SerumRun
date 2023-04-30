@@ -13,13 +13,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="ViewportContainer" type="ViewportContainer" parent="UILayer/VBoxContainer"]
-margin_right = 1024.0
+margin_right = 600.0
 margin_bottom = 298.0
 size_flags_vertical = 3
 stretch = true
 
 [node name="Viewport" type="Viewport" parent="UILayer/VBoxContainer/ViewportContainer"]
-size = Vector2( 1024, 298 )
+size = Vector2( 600, 298 )
 handle_input_locally = false
 render_target_update_mode = 3
 
@@ -27,11 +27,12 @@ render_target_update_mode = 3
 
 [node name="TabContainer" type="TabContainer" parent="UILayer/VBoxContainer"]
 margin_top = 302.0
-margin_right = 1024.0
+margin_right = 600.0
 margin_bottom = 600.0
 size_flags_vertical = 3
+tab_align = 0
 
-[node name="Adventure" type="RichTextLabel" parent="UILayer/VBoxContainer/TabContainer"]
+[node name="Journey" type="RichTextLabel" parent="UILayer/VBoxContainer/TabContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -42,10 +43,11 @@ bbcode_enabled = true
 bbcode_text = "Story will appear here."
 text = "Story will appear here."
 
-[node name="Party Stats" type="PanelContainer" parent="UILayer/VBoxContainer/TabContainer"]
+[node name="Status" type="RichTextLabel" parent="UILayer/VBoxContainer/TabContainer"]
 visible = false
-margin_right = 14.0
-margin_bottom = 14.0
+margin_top = -302.0
+margin_right = 40.0
+margin_bottom = -262.0
 
 [node name="Event Log" type="RichTextLabel" parent="UILayer/VBoxContainer/TabContainer"]
 visible = false
@@ -57,3 +59,5 @@ bbcode_text = "You start your journey.
 text = "You start your journey.
 "
 scroll_following = true
+
+[connection signal="tab_changed" from="UILayer/VBoxContainer/TabContainer" to="." method="_on_TabContainer_tab_changed"]

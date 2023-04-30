@@ -25,37 +25,37 @@ Where to next?
      + [last_roadhouse]
         -> traveling_loop(0, last_roadhouse)
    -start_location:
-     + [Main trail (4 hrs to next roadhouse)]
+     + [First roadhouse (4 hours)]
         -> traveling_loop(2, rh1)
    - rh1:
-     + [Main trail (6 hrs to next roadhouse)]   
+     + [Next roadhouse (6 hours)]   
         -> traveling_loop(3, rh2)
    - rh2:
-     + [Miser's Valley (6 hrs to next roadhouse)]   
+     + [Miser's Valley (6 hours)]   
         -> traveling_loop(3, old_man_roadhouse)
-     + [Gamblers' Gulch (6 hrs to next roadhouse)]   
+     + [Gamblers' Gulch (6 hours)]   
         -> traveling_loop(3, gambling_roadhouse)
    - old_man_roadhouse:
-     + [Main trail (6 hrs to next roadhouse)]   
+     + [Next roadhouse (6 hours)]   
         -> traveling_loop(3, rh3)
    - gambling_roadhouse:
-     + [Main trail (6 hrs to next roadhouse)]   
+     + [Next roadhouse (6 hours)]   
         -> traveling_loop(3, rh3)
    - rh3:
-     + [Main trail (6 hrs to next roadhouse)]   
+     + [Next roadhouse (6 hours)]   
         -> traveling_loop(3, bear_roadhouse)
    - missing_roadhouse:
-     + [Main trail (6 hrs to next roadhouse)]   
+     + [Next roadhouse (6 hours)]   
         -> traveling_loop(3, rh4)
    - bear_roadhouse:
-     + [Main trail (6 hrs to next roadhouse)]   
+     + [Next roadhouse (6 hours)]   
         -> traveling_loop(3, rh4)
    - rh4:
      // TODO Shortcut option?
-     + [Main trail (6 hrs to the last roadhouse)]   
+     + [Last roadhouse (6 hours)]   
         -> traveling_loop(3, last_roadhouse)
    - last_roadhouse:
-     + [Main trail (10 hrs to final destination)]   
+     + [10 hours to final destination]   
         -> traveling_loop(5, final_destination)
    - final_destination:
     // Note: technically this shouldn't happen
@@ -65,12 +65,14 @@ Where to next?
 
 
 === traveling_loop(turns_to_destination, destination) ===
+~currently_moving = true
 # CLEAR
 -> random_event ->
 -> process_weather ->
 # CLEAR
-~survival_sim(party)
+{survival_sim(party)}
 {turns_to_destination == 0:
+    ~currently_moving = false
     // TODO: Check to treat final destination differently
     ~current_location = destination
     {current_location == final_destination:

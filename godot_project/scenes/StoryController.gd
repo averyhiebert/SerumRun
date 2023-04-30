@@ -10,8 +10,10 @@ onready var _ink_player = InkPlayer.new()
 
 # Label in which to insert the text/choices
 #onready var text_target:RichTextLabel = get_node("UILayer/VBoxContainer/TabContainer/Adventure")
-onready var text_target:RichTextLabel = $UILayer/VBoxContainer/TabContainer/Adventure
+onready var text_target:RichTextLabel = $UILayer/VBoxContainer/TabContainer/Journey
 onready var event_log:RichTextLabel = get_node("UILayer/VBoxContainer/TabContainer/Event Log")
+onready var info_tab:RichTextLabel = get_node("UILayer/VBoxContainer/TabContainer/Status")
+onready var graphic_scene = $UILayer/VBoxContainer/ViewportContainer/Viewport/GraphicScene
 
 var text_before_choices = ""
 # ############################################################################ #
@@ -52,7 +54,7 @@ func _story_loaded(successfully: bool):
 	if !successfully:
 		return
 
-	# _observe_variables()
+	_observe_variables()
 	_bind_externals()
 
 	# Here, the story is started immediately, but it could be started
@@ -97,7 +99,9 @@ func _prompt_choices(choices):
 	if !choices.empty():
 		var index = 0
 		for choice in choices:
-			text_target.append_bbcode("[center][url=%d]%s[/url][/center]\n\n" % [index, choice])
+			if not (choice.begins_with("((") and choice.ends_with("))")):
+				# (note: I adopt the convention that (( )) means a text-mode-only option
+				text_target.append_bbcode("[center][url=%d]%s[/url][/center]\n\n" % [index, choice])
 			index += 1
 
 		# In a real world scenario, _select_choice' could be
@@ -141,10 +145,54 @@ func _party_member_name(party_member):
 
 # Uncomment to observe the variables from your ink story.
 # You can observe multiple variables by putting adding them in the array.
-# func _observe_variables():
-# 	_ink_player.observe_variables(["var1", "var2"], self, "_variable_changed")
+func _observe_variables():
+	_ink_player.observe_variables(["weather"], self, "_weather_changed")
+	_ink_player.observe_variables(["currently_moving"], self, "_moving_changed")
 #
-#
-# func _variable_changed(variable_name, new_value):
-# 	print("Variable '%s' changed to: %s" %[variable_name, new_value])
 
+func _weather_changed(variable_name,new_value):
+	# TODO Use signal instead
+	graphic_scene.change_weather(str(new_value))
+
+func _moving_changed(variable_name,new_value):
+	print(new_value == true)
+	graphic_scene.set_moving(new_value)
+	
+
+
+
+func _on_TabContainer_tab_changed(tab):
+	# Populate the info t
+	if (tab == 1):
+		# We have switched to the info tab, so let's populate it.
+		info_tab.clear()
+		info_tab.append_bbcode("[center][u]Inventory[/u][/center]\n\n")
+		info_tab.append_bbcode("[center]%s[/center]\n\n" % str(_ink_player.get_variable("inventory")))
+		
+		info_tab.append_bbcode("[center][u]Party Member Status[/u][/center]\n\n")
+		var party_members = _ink_player.get_variable("party")
+		
+		var conditions = [
+			"cold","tired","hungry",
+			"dysentery","broken_leg","hypothermic",
+			"exhausted","starving","broken_nose",
+			"in_pain","traumatized","terrified",
+			"stressed","agitated","bruised",
+			"guilty"
+		]
+		for pm in ["p1","p2","p3","p4"]:
+			var status_effects = [] # Check which effects this party member has
+			for condition in conditions:
+				var inklist = _ink_player.get_variable(condition)
+				# Bad hack, but the API for ink lists isn't documented : (
+				#  and I don't have time to look up the source code
+				if pm in str(inklist):
+					status_effects.append(condition.replace("_"," "))
+			var infostring = PoolStringArray(status_effects).join(", ")
+			
+			# Results in bizarre bug, for some reason.
+			#var risk_of_death = _ink_player.evaluate_function("risk_of_death",[pm]).return_value
+			#if risk_of_death:
+			#	info_tab.append_bbcode("[color=red][u]%s:[/u][/color]\t" % _party_member_name(pm))
+			info_tab.append_bbcode("[u]%s:[/u]\t" % _party_member_name(pm))
+			info_tab.append_bbcode("%s\n\n" % infostring)

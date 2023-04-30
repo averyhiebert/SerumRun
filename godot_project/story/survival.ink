@@ -19,7 +19,6 @@ VAR played_music = true
 {warm:
     You eat a hearty meal of warm stew.
     ~for_each(party,->less_hungry)
-    ~for_each(party,->cheer_up)
     ~for_each(party,->less_cold)
     ~for_each(party,->maybe_heal)
 -else:
@@ -73,9 +72,9 @@ You take a break to play the piano and dance, lightening spirits somewhat.
 //  (loop over all party members
 === function survival_sim(people) ===
     {for_each(people, ->check_death)}
-    {for_each(people, ->hunger_sim)}
-    {for_each(people, ->cold_sim)}
-    {for_each(people, ->tired_sim)}
+    {for_each(people - dead, ->hunger_sim)}
+    {for_each(people - dead, ->cold_sim)}
+    {for_each(people - dead, ->tired_sim)}
     ~return
 
 
@@ -275,6 +274,7 @@ You take a break to play the piano and dance, lightening spirits somewhat.
         ~health_score += 0.5
     }
     ~return health_score
+
 
 // TODO Move death thresholds to constants.ink ?
 === function check_death(person) ===

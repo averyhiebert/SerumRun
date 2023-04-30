@@ -36,7 +36,8 @@ VAR has_old_man = false
 {current_location == bear_roadhouse:
     ~fire_lit = false // for narrative consistency
 }
-You arrive at a small roadhouse. <>
+You arrive at a small roadhouse.
+-> confirm ->
 -> roadhouse
 
 // TODO Move time costs to constants for better balancing

@@ -14,3 +14,24 @@ EXTERNAL name(person)
     -p4:
         ~return "Devon"
     }
+
+// Stuff used by godot
+
+// This is used to communicate with Godot, so I've put it here as well:
+VAR currently_moving = false
+
+
+// Return true if person is at risk of dying.
+=== function risk_of_death(person_str) ===
+    ~temp person = p1
+    {person_str:
+    -"p1":
+        ~person = p1
+    -"p2":
+        ~person = p2
+    -"p3":
+        ~person = p3
+    -"p4":
+        ~person = p4
+    }
+    ~return total_health(person) >= LOW_DEATH_THRESHOLD

@@ -1,21 +1,30 @@
 
 # Roadmap
-- Start on Godot/graphics...
-    - minimum background: mountains, forest(?), roadhouse?
-    - minimum weather: blizzard, northern lights
-- Implement using whiskey etc. while traveling?
-    - lower priority
-    - idea: implement as unique items, not quantities. (more streamlined)
-    - perhaps there is a probabilistic chance of being consumed?
-- map selection screen?
-    - at very least, should have a viewable map
-- better starting loadout selection?
+
+## Must have
+- Party member stats page
+- Consistent styling for GUI
+
+## Nice:
+- map?
+- better win/lose screens (at least make text shake or something)
+    - death messages can also shake?
+- change party member names?
+- Slightly better starting loadout selection?
 - polish!
     - clear up "you" vs. party members confusion?
     - consistency regarding whether options have . or not
     - make deaths more attention-grabbing
-- balancing!
 - more content!
+
+## Low priority
+- Implement using whiskey etc. while traveling
+    - lower priority
+    - idea: implement as unique items, not quantities. (more streamlined)
+    - perhaps there is a probabilistic chance of being consumed?
+- balancing
+- help/credits?
+- sound?
 
 
 # Event ideas
