@@ -184,7 +184,7 @@ func _info_tab_clicked(who):
 func refresh_info_tab():
 	info_tab.clear()
 	
-	info_tab.append_bbcode("[center][u]Party Member Status[/u][/center]\n")
+	info_tab.append_bbcode("[center]Party Member Status[/center]\n")
 	
 	var conditions = [
 		"cold","tired","hungry",
@@ -212,7 +212,7 @@ func refresh_info_tab():
 		info_tab.append_bbcode("%s\n" % infostring)
 	
 	# Print inventory as well
-	info_tab.append_bbcode("\n[center][u]Inventory[/u][/center]\n\n")
+	info_tab.append_bbcode("\n[center]Inventory[/center]\n\n")
 	info_tab.append_bbcode("%s" % str(_ink_player.get_variable("inventory")))
 
 func _on_TabContainer_tab_changed(tab):

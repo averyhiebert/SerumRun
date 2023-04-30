@@ -2,17 +2,21 @@
 # Roadmap
 
 ## Must have
-- Consistent styling for GUI
+- Web build
+- Cover Art
+- icon
 
-## Nice:
-- better win/lose screens (at least make text shake or something)
-    - death messages can also shake?
-- map? As a streeeetch goal?
+## Ideally before jam ends:
+- Make principled choice regarding red/green text colour & how it fits with palette
+- just a bit more content?
+- clear up "you" vs. party members confusion?
+
+## Nice-to-have-eventually:
 - polish!
-    - clear up "you" vs. party members confusion?
-    - consistency regarding whether options have . or not
-    - make deaths more attention-grabbing
+    - consistency regarding whether options have . or not (I think most do)
 - more content!
+- map? As a streeeetch goal?
+- Separate graphics for death messages, endings, scripted events?
 
 ## Low priority
 - Implement using whiskey etc. while traveling
