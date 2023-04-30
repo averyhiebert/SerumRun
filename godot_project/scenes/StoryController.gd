@@ -18,10 +18,10 @@ onready var graphic_scene = $UILayer/VBoxContainer/ViewportContainer/Viewport/Gr
 var text_before_choices = ""
 
 var player_names = {
-	"p1": "Alice",
-	"p2": "Bob",
-	"p3": "Charlie",
-	"p4": "Devon"
+	"p1": "Gunnar",
+	"p2": "Leonhard",
+	"p3": "Wild Bill",
+	"p4": "Jack"
 }
 # ############################################################################ #
 # Lifecycle

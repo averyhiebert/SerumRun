@@ -116,7 +116,6 @@ You spot a long-forgotten, lonely cairn of stones.
 + [Leave it.]
     You leave the cairn alone.
 + [Investigate.]
-    ~currently_moving = false
     Buried beneath the cairn you find only weathered, broken bones.
     ~dead_body_seen()
 -
