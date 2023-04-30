@@ -183,9 +183,6 @@ func _info_tab_clicked(who):
 # Refresh the info tab
 func refresh_info_tab():
 	info_tab.clear()
-	info_tab.append_bbcode("[center][u]Inventory[/u][/center]\n\n")
-	#info_tab.append_bbcode("[center]%s[/center]\n\n" % str(_ink_player.get_variable("inventory")))
-	info_tab.append_bbcode("%s\n\n" % str(_ink_player.get_variable("inventory")))
 	
 	info_tab.append_bbcode("[center][u]Party Member Status[/u][/center]\n")
 	
@@ -213,6 +210,10 @@ func refresh_info_tab():
 		#	info_tab.append_bbcode("[color=red][u]%s:[/u][/color]\t" % _party_member_name(pm))
 		info_tab.append_bbcode("\n[url=%s]%s[/url]:  " % [pm,_party_member_name(pm)])
 		info_tab.append_bbcode("%s\n" % infostring)
+	
+	# Print inventory as well
+	info_tab.append_bbcode("\n[center][u]Inventory[/u][/center]\n\n")
+	info_tab.append_bbcode("%s" % str(_ink_player.get_variable("inventory")))
 
 func _on_TabContainer_tab_changed(tab):
 	# Populate the info t
