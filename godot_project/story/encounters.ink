@@ -164,6 +164,7 @@ Outside the building, two roughly human-sized objects are buried under freshly-f
         ~select_from(party)
         Amazingly, you kill the bear.
         But {name(WHO)} dies in the process. # bad # severe
+        ~kill(WHO)
     }
 -
 -> confirm ->
