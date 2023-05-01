@@ -392,7 +392,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="LD53"
+config/name="Serum Run"
 run/main_scene="res://scenes/MainNode.tscn"
 config/icon="res://icon.png"
 

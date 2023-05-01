@@ -14,7 +14,7 @@ INCLUDE weather.ink
 
 {DEBUG_MODE:
     ~current_location = debug_location
-    ~kill(p4)
+    ~kill(p3)
 }
 
 -> start

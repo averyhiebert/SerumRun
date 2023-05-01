@@ -82,13 +82,14 @@ func _continued(text, tags):
 	
 	if "bad" in tags and "severe" in tags:
 		do_log = true
-		formatting = "[color=red][shake rate=8 level=8]%s[/shake][/color]"
+		formatting = "[color=#f14e52][shake rate=8 level=8]%s[/shake][/color]"
 	elif "good" in tags:
 		do_log = true
-		formatting = "[color=green]%s[/color]"
+		formatting = "[color=#77f04f]%s[/color]"
+		#formatting = "[color=#95e0cc]%s[/color]"
 	elif "bad" in tags:
 		do_log = true
-		formatting = "[color=red]%s[/color]"
+		formatting = "[color=#f14e52]%s[/color]"
 	text_target.append_bbcode(formatting % text)
 	
 	# Note: not working at all, not sure why
@@ -115,6 +116,7 @@ func _prompt_choices(choices):
 			if not (choice.begins_with("((") and choice.ends_with("))")):
 				# (note: I adopt the convention that (( )) means a text-mode-only option
 				text_target.append_bbcode("[center][url=%d]%s[/url][/center]\n\n" % [index, choice])
+				#text_target.append_bbcode("[url=%d]%s[/url]\n\n" % [index, choice])
 			index += 1
 
 		# In a real world scenario, _select_choice' could be
@@ -195,6 +197,9 @@ func refresh_info_tab():
 		"guilty"
 	]
 	for pm in ["p1","p2","p3","p4"]:
+		if pm in str(_ink_player.get_variable("dead")):
+			info_tab.append_bbcode("\n[color=#f14e52]%s:  DEAD[/color]\n" % _party_member_name(pm))
+			continue
 		var status_effects = [] # Check which effects this party member has
 		for condition in conditions:
 			var inklist = _ink_player.get_variable(condition)
