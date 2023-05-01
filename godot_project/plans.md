@@ -4,10 +4,9 @@
 ## Must have
 - Web build
 - Cover Art
-- icon
 
 ## Ideally before jam ends:
-- slightly nicer northern lights shader?
+- icon
 
 ## Nice-to-have-eventually:
 - polish!
