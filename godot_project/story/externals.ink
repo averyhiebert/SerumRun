@@ -5,13 +5,13 @@
 EXTERNAL name(person)
 === function name(person) ===
     {person:
-    -p1:
+    -_p1:
         ~return "Alice"
-    -p2:
+    -_p2:
         ~return "Bob"
-    -p3:
+    -_p3:
         ~return "Charlie"
-    -p4:
+    -_p4:
         ~return "Devon"
     }
 
@@ -23,16 +23,16 @@ VAR currently_moving = false
 
 // Return true if person is at risk of dying.
 === function risk_of_death(person_str) ===
-    ~temp person = p1
+    ~temp person = _p1
     {person_str:
     -"p1":
-        ~person = p1
+        ~person = _p1
     -"p2":
-        ~person = p2
+        ~person = _p2
     -"p3":
-        ~person = p3
+        ~person = _p3
     -"p4":
-        ~person = p4
+        ~person = _p4
     }
     ~return total_health(person) >= LOW_DEATH_THRESHOLD
 
@@ -40,3 +40,4 @@ VAR currently_moving = false
 #  - Options formatted like ((this)) are not displayed to player
 #  - Tags # good, bad, severe control text display
 #  - currently_moving and weather are observed by the engine
+#  - should s/_/ / in all displayed text

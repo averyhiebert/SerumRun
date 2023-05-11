@@ -33,6 +33,7 @@ LIST notification_types = good, bad
 // This global variable saves a lot of writing in some cases.
 VAR WHO = ()
 === function select_from(people) ===
+    ~people = people ^ party // Just in case.
     {LIST_COUNT(people) == 0:
         ~return false
     -else:

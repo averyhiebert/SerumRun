@@ -101,71 +101,71 @@ You take a break to play the piano and dance, lightening spirits somewhat.
 === function more_hungry(person)
     {
     -hungry? person:
-        ~hungry -= person
-        ~starving += person
+        ~unflag(person, hungry)
+        ~flag(person, starving)
         ~note(name(person) + " is now starving!", bad)
     -starving? person:
         ~return // TODO Should there be a penalty?
     -else:
-        ~hungry += person
+        ~flag(person, hungry)
         ~note(name(person) + " is now hungry.", bad)
     }
 
 === function less_hungry(person)
     {
     -hungry? person:
-        ~hungry -= person
+        ~unflag(person, hungry)
         ~note(name(person) + " is no longer hungry.", good)
     -starving? person:
-        ~starving -= person
-        ~hungry += person
+        ~unflag(person, starving)
+        ~flag(person, hungry)
         ~note(name(person) + " is now merely hungry.", good)
     }
 
 === function more_tired(person)
     {
     -tired? person:
-        ~tired -= person
-        ~exhausted += person
+        ~unflag(person, tired)
+        ~flag(person, exhausted)
         ~note(name(person) + " is now exhausted!", bad)
     -exhausted? person:
         ~return
     -else:
-        ~tired += person
+        ~flag(person, tired)
         ~note(name(person) + " is now tired.", bad)
     }
 
 === function less_tired(person)
     {
     -tired? person:
-        ~tired -= person
+        ~unflag(person, tired)
         ~note(name(person) + " is no longer tired.", good)
     -exhausted? person:
-        ~exhausted -= person
-        ~tired += person
+        ~unflag(person, exhausted)
+        ~flag(person, tired)
         ~note(name(person) + " is now merely tired.", good)
     }
 
 === function more_cold(person)
     {
     -cold? person:
-        ~cold -= person
-        ~hypothermic += person
+        ~unflag(person, cold)
+        ~flag(person, hypothermic)
         ~note(name(person) + " is now hypothermic!", bad)
     -hypothermic? person:
     -else:
-        ~cold += person
+        ~flag(person, cold)
         ~note(name(person) + " is now cold.", bad)
     }
 
 === function less_cold(person)
     {
     -cold? person:
-        ~cold -= person
+        ~unflag(person, cold)
         ~note(name(person) + " is no longer cold.", good)
     -hypothermic? person:
-        ~hypothermic -= person
-        ~cold += person
+        ~unflag(person, hypothermic)
+        ~flag(person, cold)
         ~note(name(person) + " is now merely cold.", good)
     }
     ~return //TODO
@@ -174,19 +174,19 @@ You take a break to play the piano and dance, lightening spirits somewhat.
     // TODO Make sure this is up to date with all recoverable mental health effects
     // Resolve one or more bad mental health effects
     {terrified? person and RANDOM(1,100) <= CHEER_UP_PROB:
-        ~terrified -= person
+        ~unflag(person, terrified)
         ~note(name(person) + " is no longer terrified.", good)
     }
     {stressed? person and RANDOM(1,100) <= CHEER_UP_PROB:
-        ~stressed -= person
+        ~unflag(person, stressed)
         ~note(name(person) + " is no longer stressed.", good)
     }
     {agitated? person and RANDOM(1,100) <= CHEER_UP_PROB:
-        ~agitated -= person
+        ~unflag(person, agitated)
         ~note(name(person) + " is no longer agitated.", good)
     }
     {guilty? person and RANDOM(1,100) <= CHEER_UP_PROB:
-        ~guilty -= person
+        ~unflag(person, guilty)
         ~note(name(person) + " no longer feels guilty.", good)
     }
     ~return
@@ -198,7 +198,7 @@ You take a break to play the piano and dance, lightening spirits somewhat.
     }
     ~temp person = LIST_MIN(people)
     {RANDOM(1,100) <= prob and not (effect? person):
-        ~effect += person
+        ~flag(person, effect)
         ~note(name(person) + " is now " + effect_name, bad)
     }
     ~return maybe_effect(people-person, effect, effect_name, prob)
@@ -207,7 +207,7 @@ You take a break to play the piano and dance, lightening spirits somewhat.
 === function dead_body_seen()
     {RANDOM(1,100) <= DEAD_BODY_TRAUMA_PROB:
         {select_from(party - traumatized):
-            ~traumatized += WHO
+            ~flag(WHO, traumatized)
             ~note(name(WHO) + " is now traumatized.", bad)
         }
     }
@@ -215,15 +215,15 @@ You take a break to play the piano and dance, lightening spirits somewhat.
 // Situations that have a chance to heal someone
 === function maybe_heal(person)
     {broken_nose? person and RANDOM(1,100) <= HEAL_PROB:
-        ~broken_nose -= person
+        ~unflag(person, broken_nose)
         ~note(name(person) + "'s broken nose has healed.",good)
     }
     {broken_leg? person and RANDOM(1,100) <= HEAL_PROB:
-        ~broken_leg -= person
+        ~unflag(person, broken_leg)
         ~note(name(person) + "'s broken leg has healed.",good)
     }
     {dysentery? person and RANDOM(1,100) <= HEAL_PROB:
-        ~dysentery -= person
+        ~unflag(person, dysentery)
         ~note(name(person) + " no longer has dysentery",good)
     }
 

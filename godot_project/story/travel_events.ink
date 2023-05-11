@@ -1,5 +1,10 @@
 // Small random events that happen while traveling
 
+// Should only interact with main story by:
+//  - adding/removing from inventory
+//  - flagging/unflagging party member effects
+//  - setting weather
+
 === random_event ===
 {RANDOM(1,100) <= NO_EVENT_PROB:
     ->->
@@ -34,7 +39,7 @@
 
 === get_dysentery ===
 {select_from(party - dysentery):
-    ~dysentery += WHO
+    ~flag(WHO,dysentery)
     {name(WHO)} seems to have contracted dysentery. # bad
 -else:
     Everyone in your party continues to have dysentery.
@@ -44,7 +49,7 @@
 === unsettling_experience ===
 {~The sky almost seems... too far away?|The wind shouldn't sound like that, should it?|It ain't being dead - it's the awful dread of the icy grave that pains...|You get the feeling that there's something unnatural out there in the darkness.}
 {select_from(party - stressed):
-    ~stressed += WHO
+    ~flag(WHO,stressed)
     {name(WHO)} is not feeling great. # bad
 }
 ->->
@@ -52,7 +57,7 @@
 === argument ===
 {LIST_COUNT(party) < 2:
     ~select_from(party)
-    ~agitated += WHO
+    ~flag(WHO,agitated)
     {name(WHO)} has started mumbling angrily to themselves. # bad
     ->->
 }
@@ -66,14 +71,14 @@
 + [Resolve in favour of {name(person2)}.]
     ~loser = person1
 -
-~agitated += loser
+~flag(loser, agitated)
 {name(loser)} didn't like that. # bad
 ->->
 
 === sled_bump ===
 You hit a bump in the trail.
 {select_from(party - bruised):
-    ~bruised += WHO
+    ~flag(WHO, bruised)
     {name(WHO)} gets roughed up a bit. # bad
 }
 ->->
@@ -85,7 +90,7 @@ A log half-covered by the deep snow emerges out of the darkness ahead.
 -else:
     By the time you see it there's no time to turn or stop the sled.
     {select_from(party - broken_leg):
-        ~broken_leg += WHO
+        ~flag(WHO, broken_leg)
         {name(WHO)} breaks a leg in the ensuing collision. # bad
     }
 }
@@ -97,7 +102,7 @@ A pack of wolves emerge from the night behind you, {~ long teeth glinting in the
     You urge the dogs to run faster.  They don't need any convincing.
     Eventually the wolves give up and you escape with your life.
     {select_from(party - terrified):
-        ~terrified += WHO
+        ~flag(WHO,terrified)
         {name(WHO)} seems shaken by the encounter. # bad
     }
     // TODO can be bitten and get rabies?
@@ -122,26 +127,21 @@ You spot a long-forgotten, lonely cairn of stones.
 ->->
 
 === blizzard_start ===
-// TODO make this make people colder?
-// TODO risk of frostbite?
 A blizzard starts.
 ~weather = blizzard
 ->->
 
 === aurora_good_start ===
-// TODO Make this cheer people up
 The sky {~lights up|comes alive} in a {~stunning|dazzling|awe-inspiring} array of colours.
 ~weather = aurora_good
 ->->
 
 === aurora_bad_start ===
-// TODO Make this make people anxious
 The sky {~erupts|is set aflame} in {~a terrifying|an ominous|a deeply menacing} shade of red.
 ~weather = aurora_bad
 ->->
 
 === hail_start ===
-// TODO Should have risk of bruising
 A hailstorm starts.
 ~weather = hail
 ->->

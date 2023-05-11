@@ -1,5 +1,10 @@
 // Major scripted events that occur at landmarks/roadhouses.
 
+// Should only interact with main story by:
+//  - adding/removing from inventory
+//  - flagging/unflagging party member effects
+//  - setting weather
+
 VAR knocked_out_old_man = false
 === angry_old_man(-> next) ===
 // Note: intended to be "threaded" into a roadhouse menu
@@ -16,7 +21,7 @@ You are not alone here. <>
         You take a {found} from the man's unconscious body.
         ~inventory += found
         {select_from(party - guilty):
-            ~guilty += WHO
+            ~flag(WHO, guilty)
             {name(WHO)} feels guilty about this. # bad
         }
     -else:
@@ -54,8 +59,8 @@ You are not alone here. <>
         //*** {inventory has shotgun}[Shoot him.] // TODO traumatized
         *** [Fight him.]
             // TODO pick a party member to fight?
-            ~temp who = LIST_RANDOM(party)
-            {name(who)} puches the man in the face.  A fracas ensues.
+            ~select_from(party)
+            {name(WHO)} puches the man in the face.  A fracas ensues.
             {RANDOM(1,100) <= FIGHT_SUCCESS:
                 He goes down quickly. You leave him unconscious in a corner.
                 ~knocked_out_old_man = true
@@ -63,9 +68,8 @@ You are not alone here. <>
                 -> next
             -else:
                 // TODO notification here?
-                {name(who)} comes out of it with a broken nose. # bad
-                ~broken_nose += who
-                //~note(name(who) + " has a broken nose", bad)
+                {name(WHO)} comes out of it with a broken nose. # bad
+                ~flag(WHO, broken_nose)
                 "That'll teach you to mess with God's plan!" cackles the old bastard.
                 You decide not to pursue this any further.
                 -> confirm ->
@@ -155,7 +159,7 @@ Outside the building, two roughly human-sized objects are buried under freshly-f
         You grab the shotgun and shoot the bear several times.
         It puts up a brave fight, but you eventually kill it and escape mostly unharmed.
         {select_from(party - bruised):
-            ~bruised += WHO
+            ~flag(WHO, bruised)
             {name(WHO)} obtains some minor injuries. # bad
         }
     -else:

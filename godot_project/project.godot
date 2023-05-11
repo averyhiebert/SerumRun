@@ -403,7 +403,8 @@ __InkRuntime="*res://addons/inkgd/runtime/static/ink_runtime.gd"
 [display]
 
 window/size/width=600
-window/stretch/aspect="keep_width"
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
 
 [editor_plugins]
 

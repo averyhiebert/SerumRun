@@ -23,49 +23,93 @@ LIST items = lamp, shotgun, harmonica, saucepan, bedroll, bible
 VAR inventory = ()
 
 // Party Members
-LIST party = (p1), (p2), (p3), (p4)
-VAR dead = ()
+LIST possible_pms = (_p1), (_p2), (_p3), (_p4)
+VAR pm1 = ()
+VAR pm2 = ()
+VAR pm3 = ()
+VAR pm4 = ()
+VAR party = (_p1, _p2, _p3, _p4) // List of ALIVE pms
+VAR dead = ()                    // List of dead pms
 
 // Possible conditions
 //  (Implemented as a list of who has the condition)
-VAR terrified = ()
-VAR stressed = ()
-VAR traumatized = ()
-VAR agitated = ()
-VAR guilty = ()
-//VAR frostbite = ()
-//VAR bored = ()
-VAR broken_nose = ()
-VAR broken_leg = ()
-VAR bruised = ()
-VAR dysentery = ()
-VAR in_pain = ()
+LIST terrified = (_terrified)
+LIST stressed = (_stressed)
+LIST traumatized = (_traumatized)
+LIST agitated = (_agitated)
+LIST guilty = (_guilty)
+LIST broken_nose = (_broken_nose)
+LIST broken_leg = (_broken_leg)
+LIST bruised = (_bruised)
+LIST dysentery = (_dysentery)
+LIST in_pain = (_in_pain)
 
 // Values for survival sim
-VAR hungry = ()
-VAR starving = ()
+LIST hungry = (_hungry)
+LIST starving = (_starving)
 
-VAR cold = ()
-VAR hypothermic = ()
+LIST cold = (_cold)
+LIST hypothermic = (_hypothermic)
 
-VAR tired = ()
-VAR exhausted = ()
+LIST tired = (_tired)
+LIST exhausted = (_exhausted)
 
-
-// UI functions for summarizing people's state
-//  (ideally will be replaced with GUI in-engine, if time allows)
-
-=== function if(cond, text) ===
-    {cond:
-        ~return text
-    -else:
-        ~return ""
+// Functions for adding and removing flags from party members
+=== function flag(pm, ref flag_list) ===
+    // pm must be a list item
+    // flag_list must be a list with a matching identifier
+    //  element (e.g. list "tired" with identifier element "_tired")
+    ~flag_list += pm
+    ~temp flag_item = LIST_MIN(flag_list - possible_pms)
+    {pm:
+        -_p1:
+            ~pm1 += flag_item
+        -_p2:
+            ~pm2 += flag_item
+        -_p3:
+            ~pm3 += flag_item
+        -_p4:
+            ~pm4 += flag_item
     }
+    ~return
+
+=== function unflag(pm, ref flag_list) ===
+    // pm must be a list item
+    // flag_list must be a list with a matching identifier
+    //  element (e.g. list "tired" with identifier element "_tired")
+    ~flag_list -= pm
+    ~temp flag_item = LIST_MIN(flag_list - possible_pms)
+    {pm:
+        -_p1:
+            ~pm1 -= flag_item
+        -_p2:
+            ~pm2 -= flag_item
+        -_p3:
+            ~pm3 -= flag_item
+        -_p4:
+            ~pm4 -= flag_item
+    }
+    ~return
+
+// Return list of health/mental health effects on a person
+// TODO If I add skills etc., this will need to be modified
+// to get only status effects and not other things that might
+// be found in the pm list
+=== function all_effects(pm) ===
+ {pm:
+    -_p1:
+        ~return pm1
+    -_p2:
+        ~return pm2
+    -_p3:
+        ~return pm3
+    -_p4:
+        ~return pm4
+ }
 
 // TODO Also summarize dead/abandoned people
 === function summarize_status(person) ===
-    {name(person)}{total_health(person) >= LOW_DEATH_THRESHOLD: (risk of death!)}: {if(hungry?person,"hungry,")} {if(starving?person,"starving,")} {if(cold?person,"cold,")} {if(hypothermic?person,"hypothermic,")} {if(tired?person,"tired,")} {if(exhausted?person,"exhausted,")} {if(broken_nose?person,"broken nose,")} {if(broken_leg?person,"broken leg,")} {if(in_pain?person,"in pain,")} {if(terrified?person,"terrified,")} {if(stressed?person,"stressed,")} {if(traumatized?person,"traumatized,")} {if(bruised?person,"bruised,")} {if(agitated?person,"agitated,")} {if(guilty?person,"guilty,")} {if(dysentery?person,"dysentery,")}
-
+    {name(person)}{total_health(person) >= LOW_DEATH_THRESHOLD: (risk of death!)}: {all_effects(person)}
 
 
 

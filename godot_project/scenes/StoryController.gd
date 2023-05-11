@@ -109,13 +109,13 @@ func _continued(text, tags):
 
 func _prompt_choices(choices):
 	
-	text_target.append_bbcode("\n")
+	#text_target.append_bbcode("\n")
 	if !choices.empty():
 		var index = 0
 		for choice in choices:
 			if not (choice.begins_with("((") and choice.ends_with("))")):
 				# (note: I adopt the convention that (( )) means a text-mode-only option
-				text_target.append_bbcode("[center][url=%d]%s[/url][/center]\n\n" % [index, choice])
+				text_target.append_bbcode("\n[center][url=%d]%s[/url][/center]\n" % [index, choice])
 				#text_target.append_bbcode("[url=%d]%s[/url]\n\n" % [index, choice])
 			index += 1
 
