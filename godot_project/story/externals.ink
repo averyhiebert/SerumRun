@@ -25,13 +25,13 @@ VAR currently_moving = false
 === function risk_of_death(person_str) ===
     ~temp person = _p1
     {person_str:
-    -"p1":
+    -"_p1":
         ~person = _p1
-    -"p2":
+    -"_p2":
         ~person = _p2
-    -"p3":
+    -"_p3":
         ~person = _p3
-    -"p4":
+    -"_p4":
         ~person = _p4
     }
     ~return total_health(person) >= LOW_DEATH_THRESHOLD

@@ -18,10 +18,10 @@ onready var graphic_scene = $UILayer/VBoxContainer/ViewportContainer/Viewport/Gr
 var text_before_choices = ""
 
 var player_names = {
-	"p1": "Gunnar",
-	"p2": "Leonhard",
-	"p3": "Wild Bill",
-	"p4": "Jack"
+	"_p1": "Gunnar",
+	"_p2": "Leonhard",
+	"_p3": "Wild Bill",
+	"_p4": "Jack"
 }
 # ############################################################################ #
 # Lifecycle
@@ -196,7 +196,8 @@ func refresh_info_tab():
 		"stressed","agitated","bruised",
 		"guilty"
 	]
-	for pm in ["p1","p2","p3","p4"]:
+	#for pm in ["_p1","_p2","_p3","_p4"]:
+	for pm in player_names.keys():
 		if pm in str(_ink_player.get_variable("dead")):
 			info_tab.append_bbcode("\n[color=#f14e52]%s:  DEAD[/color]\n" % _party_member_name(pm))
 			continue
