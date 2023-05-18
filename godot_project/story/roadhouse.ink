@@ -4,7 +4,7 @@
 VAR fire_lit = false
 VAR has_bed = false
 VAR has_piano = false
-VAR has_old_man = false
+VAR has_kitchen = false
 
 // Encounters that *must* happen before roadhouse
 === check_blocking_encounters ===
@@ -33,6 +33,7 @@ VAR has_old_man = false
 ~fire_lit = RANDOM(1,100) <= FIRE_LIT_PROB
 ~has_bed = RANDOM(1,100) <= BED_PROB
 ~has_piano = RANDOM(1,100) <= PIANO_PROB
+~has_kitchen = RANDOM(1,100) <= KITCHEN_PROB
 {current_location == bear_roadhouse:
     ~fire_lit = false // for narrative consistency
 }
@@ -45,7 +46,7 @@ You arrive at a small roadhouse.
 === roadhouse ===
 - (options)
 # CLEAR
-{fire_lit:A fire crackles in the fireplace.|The fireplace is unlit and the room is cold and damp.}  {has_bed: This room is equipped with adequate bedding for your whole party.}  {has_piano: There is {a tack piano|an upright piano} in the corner of the room.}  {hours_remaining} hours remain.
+{fire_lit:A fire crackles in the fireplace.|The fireplace is unlit and the room is cold and damp.}{has_bed: This room is equipped with adequate bedding for your whole party.}{has_piano: There is {a tack piano|an upright piano} in the corner of the room.}{has_piano: There is {a tack piano|an upright piano} in the corner of the room.}{has_kitchen: You see a small but adequately-equipped kitchen.}   {hours_remaining} hours remain.
 <- standard_menu_options(-> options)
 <- get_additional_encounters(-> options)
 + {not fire_lit} [Light a fire. (1 hour)]
@@ -59,7 +60,7 @@ You arrive at a small roadhouse.
 + {not ate} [Eat a cold meal. (1 hour)]
     -> activity.eat_meal(false) ->
     ~hours_remaining -= 1
-+ {not ate}{fire_lit} [Eat a warm meal. (2 hours)]
++ {not ate}{fire_lit}{has_kitchen or inventory? saucepan} [Eat a warm meal. (2 hours)]
     -> activity.eat_meal(true) ->
     ~hours_remaining -= 2
 + {not slept}{has_bed} [Get a good night's sleep. (6 hours)]
