@@ -30,6 +30,9 @@ LIST bruised = (_bruised)
 LIST dysentery = (_dysentery)
 LIST in_pain = (_in_pain)
 
+// Weird event-specific conditions
+LIST maybe_impostor = (_maybe_impostor)
+
 // Values for survival sim
 LIST hungry = (_hungry)
 LIST starving = (_starving)
@@ -84,7 +87,7 @@ VAR mild_conditions = (_bruised, _guilty)
 // TODO If I add skills etc., this will need to be modified
 // to get only status effects and not other things that might
 // be found in the pm list
-=== function all_effects(pm) ===
+=== function all_flags(pm) ===
  {pm:
     -_p1:
         ~return pm1
@@ -98,7 +101,7 @@ VAR mild_conditions = (_bruised, _guilty)
 
 // TODO Also summarize dead/abandoned people
 === function summarize_status(person) ===
-    {name(person)}{total_health(person) >= LOW_DEATH_THRESHOLD: (risk of death!)}: {all_effects(person)}
+    {name(person)}{total_health(person) >= LOW_DEATH_THRESHOLD: (risk of death!)}: {all_flags(person)}
 
 
 

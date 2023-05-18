@@ -231,17 +231,7 @@ You take a break to play the piano and dance, lightening spirits somewhat.
 // Death-checking stuff ================================================
 
 === function total_health(person) ===
-    ~temp person_flags = ()
-    {person:
-        - _p1:
-            ~ person_flags = pm1
-        - _p2:
-            ~ person_flags = pm2
-        - _p3:
-            ~ person_flags = pm3
-        - _p4:
-            ~ person_flags = pm4
-    }
+    ~temp person_flags = all_flags(person)
     ~temp score = 2 * LIST_COUNT(person_flags ^ severe_conditions)
     ~score += LIST_COUNT(person_flags ^ moderate_conditions)
     ~score += 0.5 * LIST_COUNT(person_flags ^ mild_conditions)

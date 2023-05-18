@@ -46,7 +46,7 @@ You arrive at a small roadhouse.
 === roadhouse ===
 - (options)
 # CLEAR
-{fire_lit:A fire crackles in the fireplace.|The fireplace is unlit and the room is cold and damp.}{has_bed: This room is equipped with adequate bedding for your whole party.}{has_piano: There is {a tack piano|an upright piano} in the corner of the room.}{has_piano: There is {a tack piano|an upright piano} in the corner of the room.}{has_kitchen: You see a small but adequately-equipped kitchen.}   {hours_remaining} hours remain.
+{fire_lit:A fire crackles in the fireplace.|The fireplace is unlit and the room is cold and damp.}{has_bed: This room is equipped with adequate bedding for your whole party.}{has_piano: There is {a tack piano|an upright piano} in the corner of the room.}{has_kitchen: Some cooking supplies are available.}   {hours_remaining} hours remain.
 <- standard_menu_options(-> options)
 <- get_additional_encounters(-> options)
 + {not fire_lit} [Light a fire. (1 hour)]

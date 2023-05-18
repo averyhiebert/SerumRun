@@ -1,29 +1,25 @@
 
 # Roadmap
 
-## Must have
-- Web build
-- Cover Art
+## Ideally in first post-jam update
+- music
+- map (or at least "time remaining" indicator)
+- more content
+- grace period for survival sim events
+- visual indicator of # of remaining party members
 
-## Ideally before jam ends:
-- icon
 
 ## Nice-to-have-eventually:
-- polish!
+- polish
     - clear up "you" vs. party members confusion?
     - consistency regarding whether options have . or not (I think most do)
-- more content!
-- map? As a streeeetch goal?
+    - other sound effects besides music
 - Separate graphics for death messages, endings, scripted events?
-
-## Low priority
-- Implement using whiskey etc. while traveling
-    - lower priority
+- consumables
     - idea: implement as unique items, not quantities. (more streamlined)
     - perhaps there is a probabilistic chance of being consumed?
 - balancing
 - help/credits?
-- sound?
 
 
 # Event ideas
