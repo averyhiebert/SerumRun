@@ -9,7 +9,7 @@
 {RANDOM(1,100) <= NO_EVENT_PROB:
     ->->
 }
-{RANDOM(12,12):
+{RANDOM(1,12):
 -1:
     -> sled_bump ->
 -2:
