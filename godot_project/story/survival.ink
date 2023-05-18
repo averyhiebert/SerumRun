@@ -230,50 +230,22 @@ You take a break to play the piano and dance, lightening spirits somewhat.
 
 // Death-checking stuff ================================================
 
-// Measure total health (higher is worse)
-// I'm thinking >= 3 has chance to die, >= 4 automatically dies
 === function total_health(person) ===
-    ~temp health_score = 0
-    {dysentery? person:
-        ~health_score += 2
+    ~temp person_flags = ()
+    {person:
+        - _p1:
+            ~ person_flags = pm1
+        - _p2:
+            ~ person_flags = pm2
+        - _p3:
+            ~ person_flags = pm3
+        - _p4:
+            ~ person_flags = pm4
     }
-    {broken_leg? person:
-        ~health_score += 2
-    }
-    {hypothermic? person:
-        ~health_score += 1.5
-    }
-    {exhausted? person:
-        ~health_score += 1
-    }
-    {starving? person:
-        ~health_score += 1
-    }
-    {broken_nose? person:
-        ~health_score += 1
-    }
-    {in_pain? person:
-        ~health_score += 1
-    }
-    {traumatized? person:
-        ~health_score += 1
-    }
-    {terrified? person:
-        ~health_score += 1
-    }
-    {stressed? person:
-        ~health_score += 1
-    }
-    {agitated? person:
-        ~health_score += 1
-    }
-    {bruised? person:
-        ~health_score += 1
-    }
-    {guilty? person:
-        ~health_score += 0.5
-    }
-    ~return health_score
+    ~temp score = 2 * LIST_COUNT(person_flags ^ severe_conditions)
+    ~score += LIST_COUNT(person_flags ^ moderate_conditions)
+    ~score += 0.5 * LIST_COUNT(person_flags ^ mild_conditions)
+    ~return score
 
 
 // TODO Move death thresholds to constants.ink ?
@@ -287,8 +259,6 @@ You take a break to play the piano and dance, lightening spirits somewhat.
         ~died = (RANDOM(1,100) <= LOW_DEATH_CHANCE)
     }
     {died:
-        // TODO Better death messages
-        //Alas, {name(person)} has died of their various ailments! # bad
         {death_message(person)} # bad # severe
         ~kill(person)
     }

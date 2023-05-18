@@ -1,25 +1,11 @@
 // Contains most of the global state
+
 VAR hours_remaining = 72 // Hours until it is too late to avert a pandemic
-
-// Starting supplies
-VAR serum = 100    // Number of serum vials remaining
-VAR dogs_remaining = 4
-
-// For now, start with 2 of everything.
-// TODO Stretch goal: choose starting loadout.
-VAR morphine = 2   // 1 unit = cure 1 pain?
-VAR whiskey = 2    // 1 unit = cure 1 despair or terrified?
-VAR coffee = 2     // 1 unit = cure 1 tired?
-//VAR kerosene = 0  // probably out-of-scope for lamp to consume fuel
-//VAR ammo = 0      // ditto for gun consuming ammo
-VAR sourdough = 0
-VAR jerky = 0
 
 // Discrete items that confer various benefits
 // TODO Choose some subset of these at start
 // All should have printable names.
 LIST items = lamp, shotgun, harmonica, saucepan, bedroll, bible
-//VAR starter_items = (lamp, shotgun, harmonica, bedroll)
 VAR inventory = ()
 
 // Party Members
@@ -47,12 +33,15 @@ LIST in_pain = (_in_pain)
 // Values for survival sim
 LIST hungry = (_hungry)
 LIST starving = (_starving)
-
 LIST cold = (_cold)
 LIST hypothermic = (_hypothermic)
-
 LIST tired = (_tired)
 LIST exhausted = (_exhausted)
+
+// How much does each condition contribute to health score
+VAR severe_conditions = (_broken_leg, _dysentery)
+VAR moderate_conditions = (_exhausted,_hypothermic,_starving,_terrified, _stressed, _traumatized, _agitated, _broken_nose, _in_pain)
+VAR mild_conditions = (_bruised, _guilty)
 
 // Functions for adding and removing flags from party members
 === function flag(pm, ref flag_list) ===
