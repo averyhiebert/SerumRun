@@ -66,9 +66,9 @@ Your path is blocked by a river. The bridge over the river appears to have colla
     {RANDOM(1,100) < RIVER_ICE_CRACK_PROB:
         ~select_from(party)
         As you pass the middle point of the river, the ice cracks and {name(WHO)} falls into the icy water.
+        ~more_cold(WHO)
+        ~more_cold(WHO)
         Fortunately, they make it out alive.
-        ~more_cold(WHO)
-        ~more_cold(WHO)
         {LIST_COUNT(inventory) > 0:
             ~temp item = LIST_RANDOM(inventory)
             However, your {item} is lost in the stygian depths of the river.

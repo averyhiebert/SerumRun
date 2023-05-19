@@ -3,17 +3,19 @@
 
 ## Ideally in first post-jam update
 - music
-- map (or at least "time remaining" indicator)
-- more content
+- more content!
 - visual indicator of # of remaining party members
 
 
 ## Nice-to-have-eventually:
+- double-speed option when time remaining is too low?
+    - takes an increased toll on party members, of course
 - polish
     - clear up "you" vs. party members confusion?
     - consistency regarding whether options have . or not (I think most do)
     - other sound effects besides music
     - grace period for survival sim events?
+- map?
 - Separate graphics for death messages, endings, scripted events?
 - consumables
     - idea: implement as unique items, not quantities. (more streamlined)

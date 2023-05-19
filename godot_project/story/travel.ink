@@ -64,6 +64,30 @@ Where to next?
         -> endings.win
   }
 
+// TODO Really need a mroe robust travel/map system.
+=== function travel_time_from(location) ===
+    {location:
+    - final_destination:
+        ~ return 0
+    - last_roadhouse:
+        ~ return 10 + travel_time_from(final_destination)
+    - rh4:
+        ~ return 6 + travel_time_from(last_roadhouse)
+    - bear_roadhouse:
+        ~ return 6 + travel_time_from(rh4)
+    - rh3:
+        ~ return 6 + travel_time_from(bear_roadhouse)
+    - gambling_roadhouse:
+        ~ return 6 + travel_time_from(rh3)
+    - old_man_roadhouse:
+        ~ return 6 + travel_time_from(rh3)
+    - rh2:
+        ~ return 6 + travel_time_from(gambling_roadhouse)
+    - rh1:
+        ~ return 6 + travel_time_from(rh2)
+    - start_location:
+        ~ return 4 + travel_time_from(rh2)
+    }
 
 === traveling_loop(turns_to_destination, destination) ===
 ~currently_moving = true
@@ -88,7 +112,7 @@ Where to next?
 - (options)
 {~You continue past miles of inhospitable landscape.|The harsh and unforgiving landscape rushes past as you continue on your way.|Imposing scenery passes you by. It's too cold for you to appreciate the hostile beauty of the Arctic.|There isn't a breath in this land of death as you hurry, horror-driven.|There is no sound but the heavy breathing of the dogs.}
 -> describe_weather -> 
-Only {hours_remaining} hours remain.
+Only {hours_remaining} hours remain.  It will take at least {2*(turns_to_destination-1) + travel_time_from(destination)} hours to reach your final destination.
 <- standard_menu_options(->options)
 + [Continue...]
 -
