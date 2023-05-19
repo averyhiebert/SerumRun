@@ -14,7 +14,6 @@ INCLUDE weather.ink
 
 {DEBUG_MODE:
     ~current_location = debug_location
-    ~kill(_p3)
 }
 
 -> start
@@ -51,6 +50,15 @@ Select {selections_remaining} {|more} {selections_remaining > 1:items|item} befo
 
 
 === standard_menu_options(-> back) ===
++ {SHOW_TEXT_MENU}[((debug menu))]
+    Insert some debug options.
+    ++ [Kill a party member.]
+        <- thread_for_each(party, "kill ", ->kill, back)
+        +++ [Done.]
+            -> back
+    ++ [Done.]
+        # CLEAR
+       -> back
 + {SHOW_TEXT_MENU}[((Check party status))]
     # CLEAR
     Inventory: {inventory}
@@ -64,7 +72,7 @@ Select {selections_remaining} {|more} {selections_remaining > 1:items|item} befo
 // Check whether any loss conditions have been met.
 === check_loss ===
 {
-  - hours_remaining < 1:
+  - hours_remaining < 0:
     ~currently_moving = false
     -> endings.out_of_time
   - LIST_COUNT(party) == 0:

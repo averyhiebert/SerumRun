@@ -9,7 +9,8 @@
 {RANDOM(1,100) <= NO_EVENT_PROB:
     ->->
 }
-{RANDOM(1,12):
+// TODO Maybe weather should be a separate probability.
+{RANDOM(1,13):
 -1:
     -> sled_bump ->
 -2:
@@ -34,10 +35,54 @@
     -> get_dysentery ->
 -12:
     -> mysterious_cave ->
+-13:
+    -> relationship ->
 }
 + [Ok]
 -
 ->->
+
+=== relationship ===
+{
+-LIST_COUNT(party) < 2:
+    ~select_from(party)
+    ~flag(WHO, lonely)
+    {name(WHO)} {~is feeling extremely lonely.|is accutely aware of how alone they are.|longs to see another human face.|feels alone in an uncaring wasteland.} # bad
+    ->->
+-not relationship_started:
+    // Getting this event for the first time, make two people fall in love.
+    ~temp lover1 = LIST_RANDOM(party)
+    ~temp lover2 = LIST_RANDOM(party - lover1)
+    {name(lover1)} and {name(lover2)} are starting to fall in love.
+    + (relationship_started) [Allow it.]
+        ~flag(lover1,in_relationship)
+        ~flag(lover2,in_relationship)
+        {name(lover1)} and {name(lover2)} are now in a romantic relationship.
+        ->->
+    + [This is not the time or place for romance.]
+        ~flag(lover1, agitated)
+        ~flag(lover2, agitated)
+        {name(lover1)} and {name(lover2)} didn't like that. # bad
+        ->->
+- LIST_COUNT(in_relationship ^ party) == 2:
+    ~temp lovers = (in_relationship ^ party)
+    ~temp l1 = LIST_MIN(lovers)
+    ~temp l2 = LIST_MIN(lovers - l1)
+    {name(l1)} and {name(l2)} stare lovingly into each others' eyes.
+    ~cheer_up(l1)
+    ~cheer_up(l2)
+    ->->
+- LIST_COUNT(heartbroken ^ party) > 0:
+    ~select_from(party ^ heartbroken)
+    {name(WHO)} still misses their lost lover.
+    ->->
+- else:
+    // Just make someone feel lonely as a fallback
+    ~select_from(party)
+    ~flag(WHO, lonely)
+    {name(WHO)} {~is feeling extremely lonely.|is accutely aware of how alone they are.|feels alone in an uncaring wasteland.} # bad
+    ->->
+}
 
 === mysterious_cave ===
 { // What if we already did this event?
@@ -58,26 +103,30 @@
     ~temp possible_impostor = LIST_MIN(maybe_impostor ^ possible_pms)
     {
     -not (party? possible_impostor):
-        It occurs to you all that it no longer really matters whether you picked the correct {possible_impostor}.
+        It occurs to you all that it no longer really matters whether you picked the correct {name(possible_impostor)}.
     -LIST_COUNT(party) > 1:
         ~select_from(party - possible_impostor)
         {name(WHO)} keeps eyeing {name(possible_impostor)} nervously.
     -else:
         // Only the possible impostor is left.
         // TODO Actually resolve choice at this point?
-        I sure hope you picked the right {possible_impostor}.
+        I sure hope you picked the right {name(possible_impostor)}.
     }
     ->->
 }// That SHOULD be fully exhaustive...
 You pass by a jagged rock formation containing the entrance to a small cave.  You think you hear someone shouting for help from deep inside.
 + (skip_cave_help_cries) [Ignore the cries for help.]
-    You continue past without stopping.  Your mission is more important.
+    {LIST_COUNT(party) > 1:
+        You continue past without stopping.  Your mission is more important.
+    -else:
+        You continue past without stopping. With only one party member remaining, you can't afford to engage in risky rescue missions.
+    }
     {select_from(party - guilty):
         ~flag(WHO,guilty)
         {name(WHO)} feels guilty about this. #bad
     }
     ->->
-+ [Investigate.]
++ {LIST_COUNT(party) > 1}[Investigate.]
 -
 ~select_from(party)
 {name(WHO)} enters the cave to investigate.

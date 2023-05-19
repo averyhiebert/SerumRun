@@ -8,6 +8,20 @@ LIST notification_types = good, bad
     {func(item)}
     ~return for_each(ls - item, func)
 
+// Generate a list of options to apply func
+// Usage example:
+// <- therad_for_each(party, "kill ", ->kill, ->options)
+=== thread_for_each(ls, msg, -> func, -> back) ===
+    {LIST_COUNT(ls) == 0:
+        -> DONE
+    }
+    ~temp item = LIST_MIN(ls)
+    <- thread_for_each(ls - item, msg, func, back)
+    + [{msg}{item}]
+        ~func(item)
+        -> back
+    -> DONE
+
 === function note(msg, type) ===
     // Display given string as a "notification"
     // TODO decide what this looks like.

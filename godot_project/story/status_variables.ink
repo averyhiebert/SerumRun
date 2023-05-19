@@ -17,7 +17,7 @@ VAR pm4 = ()
 VAR party = (_p1, _p2, _p3, _p4) // List of ALIVE pms
 VAR dead = ()                    // List of dead pms
 
-// Possible conditions
+// Possible health conditions
 //  (Implemented as a list of who has the condition)
 LIST terrified = (_terrified)
 LIST stressed = (_stressed)
@@ -29,9 +29,8 @@ LIST broken_leg = (_broken_leg)
 LIST bruised = (_bruised)
 LIST dysentery = (_dysentery)
 LIST in_pain = (_in_pain)
-
-// Weird event-specific conditions
-LIST maybe_impostor = (_maybe_impostor)
+LIST lonely = (_lonely)
+LIST heartbroken = (_heartbroken)
 
 // Values for survival sim
 LIST hungry = (_hungry)
@@ -41,10 +40,14 @@ LIST hypothermic = (_hypothermic)
 LIST tired = (_tired)
 LIST exhausted = (_exhausted)
 
+// Weird event-specific conditions
+LIST maybe_impostor = (_maybe_impostor)
+LIST in_relationship = (_in_relationship)
+
 // How much does each condition contribute to health score
 VAR severe_conditions = (_broken_leg, _dysentery)
-VAR moderate_conditions = (_exhausted,_hypothermic,_starving,_terrified, _stressed, _traumatized, _agitated, _broken_nose, _in_pain)
-VAR mild_conditions = (_bruised, _guilty)
+VAR moderate_conditions = (_exhausted,_hypothermic,_starving,_terrified, _stressed, _traumatized, _agitated, _broken_nose, _in_pain, _heartbroken)
+VAR mild_conditions = (_bruised, _guilty, _lonely)
 
 // Functions for adding and removing flags from party members
 === function flag(pm, ref flag_list) ===

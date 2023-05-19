@@ -21,6 +21,7 @@ VAR played_music = true
     ~for_each(party,->less_hungry)
     ~for_each(party,->less_cold)
     ~for_each(party,->maybe_heal)
+    ~for_each(party, ->cheer_up)
 -else:
     You eat a meagre meal of cold bread and cheese.
     ~for_each(party,->less_hungry)
@@ -72,9 +73,11 @@ You take a break to play the piano and dance, lightening spirits somewhat.
 //  (loop over all party members
 === function survival_sim(people) ===
     {for_each(people, ->check_death)}
-    {for_each(people - dead, ->hunger_sim)}
-    {for_each(people - dead, ->cold_sim)}
-    {for_each(people - dead, ->tired_sim)}
+    ~people -= dead // Just in case
+    {for_each(people ^ in_relationship, ->heartbreak_sim)}
+    {for_each(people, ->hunger_sim)}
+    {for_each(people, ->cold_sim)}
+    {for_each(people, ->tired_sim)}
     ~return
 
 
@@ -95,6 +98,14 @@ You take a break to play the piano and dance, lightening spirits somewhat.
         ~more_tired(person)
     }
     ~return
+
+=== function heartbreak_sim(person)
+    {(in_relationship? person) and LIST_COUNT(in_relationship ^ party) == 1:
+        // The person's lover has died.
+        ~unflag(person, in_relationship)
+        ~flag(person, heartbroken)
+        {name(person)} is now heartbroken after losing their lover. # bad
+    }
 
 // Make people more/less hungry/cold/tired
 
@@ -189,6 +200,10 @@ You take a break to play the piano and dance, lightening spirits somewhat.
         ~unflag(person, guilty)
         ~note(name(person) + " no longer feels guilty.", good)
     }
+    {lonely? person and RANDOM(1,100) <= CHEER_UP_PROB:
+        ~unflag(person, lonely)
+        ~note(name(person) + " no longer feels so lonely.", good)
+    }
     ~return
 
 // Apply effect to each player with given probability
@@ -268,6 +283,8 @@ You take a break to play the piano and dance, lightening spirits somewhat.
         ~return name(person) + " has died of complications from their broken nose."
     - traumatized? person:
         ~return name(person) + " couldn't handle it.  They ran off into the night, never to be seen again."
+    - heartbroken? person:
+        ~return name(person) + " has died of a broken heart."
     - terrified? person:
         ~return name(person) + " has died from sheer terror."
     - in_pain? person:

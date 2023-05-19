@@ -71,7 +71,6 @@ Where to next?
 -> random_event ->
 -> process_weather ->
 # CLEAR
-{survival_sim(party)}
 {turns_to_destination == 0:
     ~currently_moving = false
     // TODO: Check to treat final destination differently
@@ -82,6 +81,7 @@ Where to next?
         -> roadhouse_arrival
     }
 }
+{survival_sim(party)}
 ~hours_remaining -= 2
 -> check_loss ->
 
