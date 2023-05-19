@@ -11,7 +11,7 @@
     ->->
 }
 // TODO Maybe weather should be a separate probability.
-{RANDOM(1,14):
+{RANDOM(1,15):
 -1:
     -> sled_bump ->
 -2:
@@ -40,6 +40,8 @@
     -> relationship ->
 -14:
     -> sled_damage ->
+-15:
+    -> frozen_river ->
 }
 + [Ok]
 -
@@ -47,8 +49,31 @@
 
 // Ideas:
 // find abandoned sled, choose whether to loot it.
-// crossing a frozen river?
 // fallen tree blocking your path? 
+
+=== frozen_river ===
+Your path is blocked by a river. The bridge over the river appears to have collapsed, but the river seems to be frozen anyways.
++ [Cross the frozen river.]
+    You attempt to cross the frozen river.
+    {RANDOM(1,100) < RIVER_ICE_CRACK_PROB:
+        ~select_from(party)
+        As you pass the middle point of the river, the ice cracks and {name(WHO)} falls into the icy water.
+        Fortunately, they make it out alive.
+        ~more_cold(WHO)
+        ~more_cold(WHO)
+        {LIST_COUNT(inventory) > 0:
+            ~temp item = LIST_RANDOM(inventory)
+            However, your {item} is lost in the stygian depths of the river.
+        }
+    -else:
+        Fortunately, the ice holds firm and your entire party makes it across safely.
+    }
+    ->->
++ [Repair the bridge (3 hours).]
+    ~ hours_remaining -= 3
+    You spend some time repairing the bridge, and cross the river safely.
+    ->->
+
 
 VAR sled_currently_damaged = false
 === sled_damage ===

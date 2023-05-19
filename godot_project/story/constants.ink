@@ -31,6 +31,7 @@ CONST HIGH_DEATH_CHANCE = 100
 // TODO Maybe some sort of ability check system? For fights, at least?
 CONST FIGHT_SUCCESS = 50
 CONST DICE_WINNING_PROB = 50
+CONST RIVER_ICE_CRACK_PROB = 20
 
 
 // For text-based testing vs. in-engine mode

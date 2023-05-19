@@ -172,7 +172,7 @@ Outside the building, two roughly human-sized objects are buried under freshly-f
     }
 -
 -> confirm ->
--> next_noskip
+-> next_noskip  
 
 
 
