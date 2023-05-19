@@ -10,20 +10,34 @@
 {RANDOM(1,100) <= NO_EVENT_PROB:
     ->->
 }
-// TODO Maybe weather should be a separate probability.
-{RANDOM(1,15):
+{RANDOM(1,100) <= 30:
+    // Pick one of the weather events.
+    {RANDOM(1,4):
+        -1:
+            -> aurora_good_start ->
+        -2:
+            -> aurora_bad_start ->
+        -3:
+            -> blizzard_start ->
+        -4:
+            -> hail_start ->
+    }
+    ->->
+}
+// Remaining non-weather events.
+{RANDOM(1,11):
 -1:
     -> sled_bump ->
 -2:
     -> wolf_pack ->
 -3:
-    -> blizzard_start ->
+    -> mysterious_cave ->
 -4:
-    -> aurora_good_start ->
+    -> relationship ->
 -5:
-    -> aurora_bad_start ->
+    -> sled_damage ->
 -6:
-    -> hail_start ->
+    -> frozen_river ->
 -7:
     -> cairn ->
 -8:
@@ -34,14 +48,6 @@
     -> argument ->
 -11:
     -> get_dysentery ->
--12:
-    -> mysterious_cave ->
--13:
-    -> relationship ->
--14:
-    -> sled_damage ->
--15:
-    -> frozen_river ->
 }
 + [Ok]
 -
@@ -50,6 +56,8 @@
 // Ideas:
 // find abandoned sled, choose whether to loot it.
 // fallen tree blocking your path? 
+
+// TODO Better flavour text for newly-added events.
 
 === frozen_river ===
 Your path is blocked by a river. The bridge over the river appears to have collapsed, but the river seems to be frozen anyways.

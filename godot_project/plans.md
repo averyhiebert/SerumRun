@@ -5,7 +5,6 @@
 - music
 - map (or at least "time remaining" indicator)
 - more content
-- grace period for survival sim events
 - visual indicator of # of remaining party members
 
 
@@ -14,6 +13,7 @@
     - clear up "you" vs. party members confusion?
     - consistency regarding whether options have . or not (I think most do)
     - other sound effects besides music
+    - grace period for survival sim events?
 - Separate graphics for death messages, endings, scripted events?
 - consumables
     - idea: implement as unique items, not quantities. (more streamlined)
