@@ -4,13 +4,14 @@
 //  - adding/removing from inventory
 //  - flagging/unflagging party member effects
 //  - setting weather
+//  - changing hours_remaining
 
 === random_event ===
 {RANDOM(1,100) <= NO_EVENT_PROB:
     ->->
 }
 // TODO Maybe weather should be a separate probability.
-{RANDOM(1,13):
+{RANDOM(1,14):
 -1:
     -> sled_bump ->
 -2:
@@ -37,10 +38,42 @@
     -> mysterious_cave ->
 -13:
     -> relationship ->
+-14:
+    -> sled_damage ->
 }
 + [Ok]
 -
 ->->
+
+// Ideas:
+// find abandoned sled, choose whether to loot it.
+// crossing a frozen river?
+// fallen tree blocking your path? 
+
+VAR sled_currently_damaged = false
+=== sled_damage ===
+{not sled_currently_damaged:
+You notice a crack forming on the side of your sled.
++ [Fix it now. (1 hour)]
+    You stop for an hour to reinforce the damaged portion of the sled.
+    ~hours_remaining -= 1
+    ->->
++ [Ignore it.]
+    You don't have time to deal with the crack, so you continue on your way.
+    ~sled_currently_damaged = true
+    ->->
+-else:
+    // Sled is already damaged.
+    The crack in your sled that you noticed earlier worsens, and the sled falls apart while in motion, causing a crash.
+    ~hours_remaining -= 3
+    It takes three hours to fix the sled and get moving again. # bad
+    {LIST_COUNT(inventory) > 0:
+        ~temp item = LIST_RANDOM(inventory)
+        Moreover, your {item} seems to have been lost in the crash. # bad
+    }
+    ~sled_currently_damaged = false
+    ->->
+}
 
 === relationship ===
 {
