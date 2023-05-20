@@ -65,10 +65,42 @@ text = "You start your journey.
 "
 scroll_following = true
 
+[node name="Credits" type="RichTextLabel" parent="UILayer/VBoxContainer/TabContainer"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+bbcode_text = "Writing, code, and art by Avery Hiebert.
+
+Music: 
+\"Moorland\" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/
+
+Font:
+Perfect DOS VGA 437 by Zeh Fernando
+
+Colour Palette:
+\"Sirens at Night\" by avianAnnihilator
+https://lospec.com/palette-list/sirens-at-night"
+text = "Writing, code, and art by Avery Hiebert.
+
+Music: 
+\"Moorland\" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/
+
+Font:
+Perfect DOS VGA 437 by Zeh Fernando
+
+Colour Palette:
+\"Sirens at Night\" by avianAnnihilator
+https://lospec.com/palette-list/sirens-at-night"
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
 
 [node name="RenameDialog" parent="CanvasLayer" instance=ExtResource( 3 )]
+visible = false
 
 [connection signal="tab_changed" from="UILayer/VBoxContainer/TabContainer" to="." method="_on_TabContainer_tab_changed"]
 [connection signal="name_changed" from="CanvasLayer/RenameDialog" to="." method="_on_RenameDialog_name_changed"]

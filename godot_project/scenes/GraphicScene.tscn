@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=2]
+[gd_scene load_steps=53 format=2]
 
 [ext_resource path="res://assets/sled.png" type="Texture" id=1]
 [ext_resource path="res://assets/bg_layers/far_trees.png" type="Texture" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://assets/person2.png" type="Texture" id=14]
 [ext_resource path="res://assets/person4.png" type="Texture" id=15]
 [ext_resource path="res://assets/person3.png" type="Texture" id=16]
+[ext_resource path="res://assets/music/Moorland.mp3" type="AudioStream" id=17]
 
 [sub_resource type="ShaderMaterial" id=12]
 shader = ExtResource( 10 )
@@ -299,7 +300,6 @@ position = Vector2( 0, 65 )
 scale = Vector2( 4, 4 )
 frames = SubResource( 9 )
 animation = "stopped"
-frame = 1
 playing = true
 
 [node name="trailer" type="AnimatedSprite" parent="Sled"]
@@ -348,3 +348,7 @@ gravity = Vector2( 0, 0 )
 initial_velocity = 1000.0
 scale_amount = 6.0
 color = Color( 0.584314, 0.878431, 0.8, 1 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 17 )
+autoplay = true
