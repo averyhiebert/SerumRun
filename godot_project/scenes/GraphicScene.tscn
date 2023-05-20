@@ -220,7 +220,7 @@ texture = ExtResource( 5 )
 
 [node name="EvilAuroraLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 visible = false
-motion_scale = Vector2( 0.03, 1 )
+motion_scale = Vector2( 0, 1 )
 motion_mirroring = Vector2( 2048, 0 )
 
 [node name="Aurora" type="Sprite" parent="ParallaxBackground/EvilAuroraLayer"]
@@ -230,7 +230,7 @@ texture = ExtResource( 6 )
 
 [node name="GoodAuroraLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 visible = false
-motion_scale = Vector2( 0.03, 1 )
+motion_scale = Vector2( 0, 1 )
 motion_mirroring = Vector2( 2048, 0 )
 
 [node name="Aurora" type="Sprite" parent="ParallaxBackground/GoodAuroraLayer"]
@@ -299,6 +299,7 @@ position = Vector2( 0, 65 )
 scale = Vector2( 4, 4 )
 frames = SubResource( 9 )
 animation = "stopped"
+frame = 1
 playing = true
 
 [node name="trailer" type="AnimatedSprite" parent="Sled"]

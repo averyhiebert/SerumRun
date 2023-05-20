@@ -4,13 +4,8 @@
 ## Ideally in first post-jam update
 - music
 - more content!
-- Update GUI for new content
-    - visual displayer of loneliness etc.
-    - display who is in relationships
-    - Question mark next to possible impostor?
 
 ## Nice-to-have-eventually:
-- improve renaming dialogue
 - double-speed option when time remaining is too low?
     - takes an increased toll on party members, of course
 - polish

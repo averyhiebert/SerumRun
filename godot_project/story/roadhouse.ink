@@ -30,6 +30,7 @@ VAR has_kitchen = false
 === roadhouse_arrival ===
 -> reset_activities ->
 -> check_blocking_encounters ->
+-> check_loss ->
 ~fire_lit = RANDOM(1,100) <= FIRE_LIT_PROB
 ~has_bed = RANDOM(1,100) <= BED_PROB
 ~has_piano = RANDOM(1,100) <= PIANO_PROB
