@@ -15,6 +15,8 @@ onready var event_log:RichTextLabel = get_node("UILayer/VBoxContainer/TabContain
 onready var info_tab:RichTextLabel = get_node("UILayer/VBoxContainer/TabContainer/Status")
 onready var graphic_scene = $UILayer/VBoxContainer/ViewportContainer/Viewport/GraphicScene
 
+var waiting_for_choice = false
+
 var text_before_choices = ""
 
 var player_names = {
@@ -108,8 +110,8 @@ func _continued(text, tags):
 # ############################################################################ #
 
 func _prompt_choices(choices):
-	
-	#text_target.append_bbcode("\n")
+	if waiting_for_choice:
+		return # Needed to avoid bug with multiple signals emitted for same choice.
 	if !choices.empty():
 		var index = 0
 		for choice in choices:
@@ -118,10 +120,7 @@ func _prompt_choices(choices):
 				text_target.append_bbcode("\n[center][url=%d]%s[/url][/center]\n" % [index, choice])
 				#text_target.append_bbcode("[url=%d]%s[/url]\n\n" % [index, choice])
 			index += 1
-
-		# In a real world scenario, _select_choice' could be
-		# connected to a signal, like 'Button.pressed'.
-		# _select_choice(0)
+	waiting_for_choice = true
 
 
 func _ended():
@@ -133,6 +132,7 @@ func _select_choice(index):
 	# text_target.bbcode_text = text_before_choices
 	# Note: above line not working, instead just clearing window after each choice.
 	# That behaviours is *good enough*, so I'll just use it explicitly.
+	waiting_for_choice = false
 	text_target.clear()
 	
 	_ink_player.choose_choice_index(int(index))
@@ -211,15 +211,17 @@ func refresh_info_tab():
 				status_effects.append(condition.replace("_"," "))
 		var infostring = PoolStringArray(status_effects).join(", ")
 		
-		# Results in bizarre bug, for some reason.
-		#var risk_of_death = _ink_player.evaluate_function("risk_of_death",[pm]).return_value
-		#if risk_of_death:
-		#	info_tab.append_bbcode("[color=red][u]%s:[/u][/color]\t" % _party_member_name(pm))
+		var pm_display_name = _party_member_name(pm)
+		# Check if player is an evil doppelganger
 		if pm in str(_ink_player.get_variable("maybe_impostor")):
-			# Player might be an evil doppelganger
-			info_tab.append_bbcode("\n[url=%s]%s (???)[/url]:  " % [pm,_party_member_name(pm)])
-		else:
-			info_tab.append_bbcode("\n[url=%s]%s[/url]:  " % [pm,_party_member_name(pm)])
+			pm_display_name = "%s (???)" % pm_display_name
+		# Check if player is at risk of dying
+		if _ink_player.evaluate_function("risk_of_death",[pm]).return_value:
+			infostring = "[color=#f14e52]%s[/color]" % infostring
+		
+		#info_tab.append_bbcode("\n[url=%s]%s[/url]:  " % [pm,pm_display_name])
+		#info_tab.append_bbcode("%s\n" % infostring)
+		info_tab.append_bbcode("\n[url=%s]%s[/url]:  " % [pm,pm_display_name])
 		info_tab.append_bbcode("%s\n" % infostring)
 	
 	# Print inventory as well
