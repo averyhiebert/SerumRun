@@ -1,6 +1,34 @@
-[gd_resource type="Theme" load_steps=8 format=2]
+[gd_resource type="Theme" load_steps=12 format=2]
 
 [ext_resource path="res://assets/font/main_font.tres" type="DynamicFont" id=1]
+
+[sub_resource type="StyleBoxFlat" id=9]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 2.0
+content_margin_bottom = 2.0
+bg_color = Color( 0.223529, 0.439216, 0.478431, 1 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 2.0
+content_margin_bottom = 2.0
+bg_color = Color( 0.137255, 0.286275, 0.364706, 1 )
+
+[sub_resource type="StyleBoxFlat" id=10]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 2.0
+content_margin_bottom = 2.0
+bg_color = Color( 0.137255, 0.286275, 0.364706, 1 )
+
+[sub_resource type="StyleBoxFlat" id=11]
+content_margin_left = 2.0
+content_margin_right = 2.0
+content_margin_top = 2.0
+content_margin_bottom = 2.0
+bg_color = Color( 0.854902, 0.94902, 0.913725, 1 )
 
 [sub_resource type="StyleBoxFlat" id=6]
 bg_color = Color( 0.109804, 0.14902, 0.219608, 1 )
@@ -47,6 +75,17 @@ border_width_bottom = 2
 border_color = Color( 0.137255, 0.286275, 0.364706, 1 )
 
 [resource]
+Button/fonts/font = ExtResource( 1 )
+Button/styles/hover = SubResource( 9 )
+Button/styles/normal = SubResource( 8 )
+Button/styles/pressed = SubResource( 10 )
+LineEdit/colors/cursor_color = Color( 0.109804, 0.14902, 0.219608, 1 )
+LineEdit/colors/font_color = Color( 0.109804, 0.14902, 0.219608, 1 )
+LineEdit/colors/font_color_selected = Color( 0.109804, 0.14902, 0.219608, 1 )
+LineEdit/colors/font_color_uneditable = Color( 0.109804, 0.14902, 0.219608, 1 )
+LineEdit/colors/selection_color = Color( 0.223529, 0.439216, 0.478431, 1 )
+LineEdit/fonts/font = ExtResource( 1 )
+LineEdit/styles/normal = SubResource( 11 )
 Panel/styles/panel = SubResource( 6 )
 RichTextLabel/colors/default_color = Color( 0.854902, 0.94902, 0.913725, 1 )
 RichTextLabel/fonts/normal_font = ExtResource( 1 )

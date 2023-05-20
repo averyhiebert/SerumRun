@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scenes/RenameDialog.gd" type="Script" id=1]
+[ext_resource path="res://scenes/main_theme.tres" type="Theme" id=2]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -18,7 +19,7 @@ margin_left = -97.0
 margin_top = -41.0
 margin_right = 97.0
 margin_bottom = 41.0
-window_title = "Rename Party Member"
+theme = ExtResource( 2 )
 
 [node name="LineEdit" type="LineEdit" parent="WindowDialog"]
 anchor_left = 0.1
@@ -36,4 +37,5 @@ margin_right = 20.0
 margin_bottom = 20.0
 text = "Save"
 
+[connection signal="text_entered" from="WindowDialog/LineEdit" to="." method="_on_LineEdit_text_entered"]
 [connection signal="pressed" from="WindowDialog/Button" to="." method="_on_Button_pressed"]

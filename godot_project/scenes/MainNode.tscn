@@ -61,7 +61,7 @@ margin_bottom = 40.0
 bbcode_enabled = true
 bbcode_text = "[center]You start your journey.[center]
 "
-text = "You start your journey.
+text = "[center]You start your journey.[center]
 "
 scroll_following = true
 
@@ -69,7 +69,6 @@ scroll_following = true
 layer = 2
 
 [node name="RenameDialog" parent="CanvasLayer" instance=ExtResource( 3 )]
-visible = false
 
 [connection signal="tab_changed" from="UILayer/VBoxContainer/TabContainer" to="." method="_on_TabContainer_tab_changed"]
 [connection signal="name_changed" from="CanvasLayer/RenameDialog" to="." method="_on_RenameDialog_name_changed"]

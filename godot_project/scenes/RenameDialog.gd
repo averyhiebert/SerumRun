@@ -13,6 +13,7 @@ func _ready():
 func activate(who, current_name):
 	whose_name = who
 	$WindowDialog/LineEdit.text = current_name
+	$WindowDialog.get_close_button().visible = false
 	$WindowDialog.popup()
 
 
@@ -21,3 +22,9 @@ func _on_Button_pressed():
 	var new_name = $WindowDialog/LineEdit.text
 	if len(new_name) > 0:
 		emit_signal("name_changed", whose_name, new_name)
+	$WindowDialog.hide()
+
+
+func _on_LineEdit_text_entered(new_text):
+	# Also save when hitting enter.
+	_on_Button_pressed()
