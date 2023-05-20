@@ -300,6 +300,7 @@ You take a break to play the piano and dance, lightening spirits somewhat.
 === function kill(person) ===
     ~dead += person
     ~party -= person
+    ~remaining_party_members = LIST_COUNT(party)
 
 
 

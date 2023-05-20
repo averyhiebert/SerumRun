@@ -22,8 +22,7 @@
         -4:
             -> hail_start ->
     }
-    ->->
-}
+-else:
 // Remaining non-weather events.
 {RANDOM(1,11):
 -1:
@@ -48,6 +47,7 @@
     -> argument ->
 -11:
     -> get_dysentery ->
+ }
 }
 + [Ok]
 -
@@ -200,7 +200,7 @@ A moment later, {name(WHO)} emerges from the cave with a horrified expression on
 Both {name(WHO)}s beg you to take them with you and leave behind the other {name(WHO)}.
 + (abandon_both) [Leave them both.]
     You can't afford to take a risk on whatever is happening here.
-    Against their protestations, you abandon both copies of {name(WHO)}. # bad # severe
+    Against their protestations, you abandon both copies of {name(WHO)}. #bad #severe
     ~kill(WHO)
     {select_from(party - guilty):
         ~flag(WHO,guilty)

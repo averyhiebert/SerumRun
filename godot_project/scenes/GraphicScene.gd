@@ -4,7 +4,7 @@ extends Node2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-
+var num_party_members = 4
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,7 +19,26 @@ func change_weather(weather):
 
 func set_moving(moving):
 	if moving:
-		$AnimatedSprite.play("running")
+		$Sled.play("running")
+		$Sled/trailer.play("running")
+		$Sled/person2.play("running")
+		$Sled/person3.play("running")
+		$Sled/person4.play("running")
 	else:
-		$AnimatedSprite.play("stopped")
+		$Sled.play("stopped")
+		$Sled/trailer.play("stopped")
+		$Sled/person2.play("stopped")
+		$Sled/person3.play("stopped")
+		$Sled/person4.play("stopped")
 	$ParallaxBackground.stopped = not moving
+
+func update_pm_count(count):
+	num_party_members = count
+	if count < 4:
+		$Sled/person2.hide()
+	if count < 3:
+		$Sled/person3.hide()
+	if count < 2:
+		$Sled/person4.hide()
+	if count < 2:
+		$Sled/trailer.hide()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=52 format=2]
 
 [ext_resource path="res://assets/sled.png" type="Texture" id=1]
 [ext_resource path="res://assets/bg_layers/far_trees.png" type="Texture" id=2]
@@ -12,6 +12,10 @@
 [ext_resource path="res://shaders/aurora.gdshader" type="Shader" id=10]
 [ext_resource path="res://scenes/GraphicScene.gd" type="Script" id=11]
 [ext_resource path="res://assets/bg_layers/far_trees_dark.png" type="Texture" id=12]
+[ext_resource path="res://assets/trailer.png" type="Texture" id=13]
+[ext_resource path="res://assets/person2.png" type="Texture" id=14]
+[ext_resource path="res://assets/person4.png" type="Texture" id=15]
+[ext_resource path="res://assets/person3.png" type="Texture" id=16]
 
 [sub_resource type="ShaderMaterial" id=12]
 shader = ExtResource( 10 )
@@ -66,6 +70,138 @@ animations = [ {
 "speed": 10.0
 } ]
 
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 13 )
+region = Rect2( 320, 0, 64, 24 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 13 )
+region = Rect2( 0, 0, 64, 24 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 13 )
+region = Rect2( 64, 0, 64, 24 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 13 )
+region = Rect2( 128, 0, 64, 24 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 13 )
+region = Rect2( 192, 0, 64, 24 )
+
+[sub_resource type="SpriteFrames" id=29]
+animations = [ {
+"frames": [ SubResource( 24 ) ],
+"loop": true,
+"name": "stopped",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ) ],
+"loop": true,
+"name": "running",
+"speed": 10.0
+} ]
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 14 )
+region = Rect2( 256, 0, 64, 24 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 14 )
+region = Rect2( 0, 0, 64, 24 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 14 )
+region = Rect2( 64, 0, 64, 24 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 14 )
+region = Rect2( 128, 0, 64, 24 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 14 )
+region = Rect2( 192, 0, 64, 24 )
+
+[sub_resource type="SpriteFrames" id=18]
+animations = [ {
+"frames": [ SubResource( 19 ) ],
+"loop": true,
+"name": "stopped",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ) ],
+"loop": true,
+"name": "running",
+"speed": 10.0
+} ]
+
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 16 )
+region = Rect2( 256, 0, 64, 24 )
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 16 )
+region = Rect2( 0, 0, 64, 24 )
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 16 )
+region = Rect2( 64, 0, 64, 24 )
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 16 )
+region = Rect2( 128, 0, 64, 24 )
+
+[sub_resource type="AtlasTexture" id=34]
+atlas = ExtResource( 16 )
+region = Rect2( 192, 0, 64, 24 )
+
+[sub_resource type="SpriteFrames" id=35]
+animations = [ {
+"frames": [ SubResource( 30 ) ],
+"loop": true,
+"name": "stopped",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ) ],
+"loop": true,
+"name": "running",
+"speed": 10.0
+} ]
+
+[sub_resource type="AtlasTexture" id=36]
+atlas = ExtResource( 15 )
+region = Rect2( 256, 0, 64, 24 )
+
+[sub_resource type="AtlasTexture" id=37]
+atlas = ExtResource( 15 )
+region = Rect2( 0, 0, 64, 24 )
+
+[sub_resource type="AtlasTexture" id=38]
+atlas = ExtResource( 15 )
+region = Rect2( 64, 0, 64, 24 )
+
+[sub_resource type="AtlasTexture" id=39]
+atlas = ExtResource( 15 )
+region = Rect2( 128, 0, 64, 24 )
+
+[sub_resource type="AtlasTexture" id=40]
+atlas = ExtResource( 15 )
+region = Rect2( 192, 0, 64, 24 )
+
+[sub_resource type="SpriteFrames" id=41]
+animations = [ {
+"frames": [ SubResource( 36 ) ],
+"loop": true,
+"name": "stopped",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ) ],
+"loop": true,
+"name": "running",
+"speed": 10.0
+} ]
+
 [node name="GraphicScene" type="Node2D"]
 script = ExtResource( 11 )
 
@@ -84,7 +220,7 @@ texture = ExtResource( 5 )
 
 [node name="EvilAuroraLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 visible = false
-motion_scale = Vector2( 0, 1 )
+motion_scale = Vector2( 0.03, 1 )
 motion_mirroring = Vector2( 2048, 0 )
 
 [node name="Aurora" type="Sprite" parent="ParallaxBackground/EvilAuroraLayer"]
@@ -94,7 +230,7 @@ texture = ExtResource( 6 )
 
 [node name="GoodAuroraLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 visible = false
-motion_scale = Vector2( 0, 1 )
+motion_scale = Vector2( 0.03, 1 )
 motion_mirroring = Vector2( 2048, 0 )
 
 [node name="Aurora" type="Sprite" parent="ParallaxBackground/GoodAuroraLayer"]
@@ -124,15 +260,15 @@ motion_scale = Vector2( 0.5, 1 )
 motion_mirroring = Vector2( 2048, 0 )
 
 [node name="FarTrees" type="Sprite" parent="ParallaxBackground/FarTreeLayer"]
-position = Vector2( 1026, -75 )
+position = Vector2( 1024, -75 )
 texture = ExtResource( 2 )
 
-[node name="FarTrees2" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="MediumTrees" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2( 0.6, 1 )
 motion_mirroring = Vector2( 2048, 0 )
 
-[node name="FarTreesDark" type="Sprite" parent="ParallaxBackground/FarTrees2"]
-position = Vector2( 1050, 70 )
+[node name="FarTreesDark" type="Sprite" parent="ParallaxBackground/MediumTrees"]
+position = Vector2( 980, 70 )
 texture = ExtResource( 12 )
 
 [node name="NearTreeLayer" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -158,10 +294,30 @@ texture = ExtResource( 3 )
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 28, 65 )
+[node name="Sled" type="AnimatedSprite" parent="."]
+position = Vector2( 0, 65 )
 scale = Vector2( 4, 4 )
 frames = SubResource( 9 )
+animation = "stopped"
+playing = true
+
+[node name="trailer" type="AnimatedSprite" parent="Sled"]
+frames = SubResource( 29 )
+animation = "stopped"
+playing = true
+
+[node name="person2" type="AnimatedSprite" parent="Sled"]
+frames = SubResource( 18 )
+animation = "stopped"
+playing = true
+
+[node name="person3" type="AnimatedSprite" parent="Sled"]
+frames = SubResource( 35 )
+animation = "stopped"
+playing = true
+
+[node name="person4" type="AnimatedSprite" parent="Sled"]
+frames = SubResource( 41 )
 animation = "stopped"
 playing = true
 

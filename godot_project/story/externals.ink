@@ -18,7 +18,10 @@ EXTERNAL name(person)
 // Stuff used by godot ========================================================
 
 // This is used to communicate with Godot, so I've put it here as well:
+// These variables are used to communicate with Godot, so they're included
+//  in this file as well.
 VAR currently_moving = false
+VAR remaining_party_members = 4
 
 
 // Return true if person is at risk of dying.

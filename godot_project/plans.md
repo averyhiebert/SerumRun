@@ -11,6 +11,7 @@
 - double-speed option when time remaining is too low?
     - takes an increased toll on party members, of course
 - polish
+    - in-GUI distinction between "dead" and "abandoned, presumed dead"?
     - clear up "you" vs. party members confusion?
     - consistency regarding whether options have . or not (I think most do)
     - other sound effects besides music

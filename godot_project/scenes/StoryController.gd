@@ -165,6 +165,7 @@ func _on_RenameDialog_name_changed(who, new_name):
 func _observe_variables():
 	_ink_player.observe_variables(["weather"], self, "_weather_changed")
 	_ink_player.observe_variables(["currently_moving"], self, "_moving_changed")
+	_ink_player.observe_variables(["remaining_party_members"], self, "_num_pms_changed")
 #
 
 func _weather_changed(_variable_name,new_value):
@@ -172,12 +173,12 @@ func _weather_changed(_variable_name,new_value):
 	graphic_scene.change_weather(str(new_value))
 
 func _moving_changed(_variable_name,new_value):
-	print(new_value == true)
 	graphic_scene.set_moving(new_value)
-	
+
+func _num_pms_changed(_variable_name,new_value):
+	graphic_scene.update_pm_count(new_value)
 
 func _info_tab_clicked(who):
-	print("%s was clicked" % who)
 	# TODO properly use signals
 	var current_name = _party_member_name(who)
 	$CanvasLayer/RenameDialog.activate(who, current_name)

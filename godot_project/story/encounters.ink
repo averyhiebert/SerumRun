@@ -5,6 +5,12 @@
 //  - flagging/unflagging party member effects
 //  - setting weather
 
+// Ideas
+// - someone who will trade/barter with you?
+// - haunted house?
+// - house with someone who is implied to be in some way supernatural/spooky?
+
+
 VAR knocked_out_old_man = false
 === angry_old_man(-> next) ===
 // Note: intended to be "threaded" into a roadhouse menu
@@ -156,8 +162,9 @@ Outside the building, two roughly human-sized objects are buried under freshly-f
 * [Fight.]
     // Really matters if you have a shotgun.
     {inventory has shotgun:
-        You grab the shotgun and shoot the bear several times.
-        It puts up a brave fight, but you eventually kill it and escape mostly unharmed.
+        ~select_from(party)
+        {name(WHO)} grabs the shotgun and shoots the bear several times.
+        It puts up a brave fight, but your party eventually kills it and escapes mostly unharmed.
         {select_from(party - bruised):
             ~flag(WHO, bruised)
             {name(WHO)} obtains some minor injuries. # bad
