@@ -187,7 +187,7 @@ func _info_tab_clicked(who):
 func refresh_info_tab():
 	info_tab.clear()
 	
-	info_tab.append_bbcode("[center]Party Member Status[/center]\n")
+	info_tab.append_bbcode("[center]Party Members (click to rename)[/center]\n")
 	
 	var conditions = [
 		"cold","tired","hungry",
@@ -195,7 +195,7 @@ func refresh_info_tab():
 		"exhausted","starving","broken_nose",
 		"in_pain","traumatized","terrified",
 		"stressed","agitated","bruised",
-		"guilty"
+		"guilty","lonely","heartbroken","in_love"
 	]
 	#for pm in ["_p1","_p2","_p3","_p4"]:
 	for pm in player_names.keys():
@@ -215,7 +215,11 @@ func refresh_info_tab():
 		#var risk_of_death = _ink_player.evaluate_function("risk_of_death",[pm]).return_value
 		#if risk_of_death:
 		#	info_tab.append_bbcode("[color=red][u]%s:[/u][/color]\t" % _party_member_name(pm))
-		info_tab.append_bbcode("\n[url=%s]%s[/url]:  " % [pm,_party_member_name(pm)])
+		if pm in str(_ink_player.get_variable("maybe_impostor")):
+			# Player might be an evil doppelganger
+			info_tab.append_bbcode("\n[url=%s]%s (???)[/url]:  " % [pm,_party_member_name(pm)])
+		else:
+			info_tab.append_bbcode("\n[url=%s]%s[/url]:  " % [pm,_party_member_name(pm)])
 		info_tab.append_bbcode("%s\n" % infostring)
 	
 	# Print inventory as well

@@ -42,7 +42,7 @@ LIST exhausted = (_exhausted)
 
 // Weird event-specific conditions
 LIST maybe_impostor = (_maybe_impostor)
-LIST in_relationship = (_in_relationship)
+LIST in_love = (_in_love)
 
 // How much does each condition contribute to health score
 VAR severe_conditions = (_broken_leg, _dysentery)

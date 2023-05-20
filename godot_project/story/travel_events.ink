@@ -121,8 +121,8 @@ You notice a crack forming on the side of your sled.
     ~temp lover2 = LIST_RANDOM(party - lover1)
     {name(lover1)} and {name(lover2)} are starting to fall in love.
     + (relationship_started) [Allow it.]
-        ~flag(lover1,in_relationship)
-        ~flag(lover2,in_relationship)
+        ~flag(lover1,in_love)
+        ~flag(lover2,in_love)
         {name(lover1)} and {name(lover2)} are now in a romantic relationship.
         ->->
     + [This is not the time or place for romance.]
@@ -130,8 +130,8 @@ You notice a crack forming on the side of your sled.
         ~flag(lover2, agitated)
         {name(lover1)} and {name(lover2)} didn't like that. # bad
         ->->
-- LIST_COUNT(in_relationship ^ party) == 2:
-    ~temp lovers = (in_relationship ^ party)
+- LIST_COUNT(in_love ^ party) == 2:
+    ~temp lovers = (in_love ^ party)
     ~temp l1 = LIST_MIN(lovers)
     ~temp l2 = LIST_MIN(lovers - l1)
     {name(l1)} and {name(l2)} stare lovingly into each others' eyes.

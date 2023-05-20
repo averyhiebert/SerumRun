@@ -74,7 +74,7 @@ You take a break to play the piano and dance, lightening spirits somewhat.
 === function survival_sim(people) ===
     {for_each(people, ->check_death)}
     ~people -= dead // Just in case
-    {for_each(people ^ in_relationship, ->heartbreak_sim)}
+    {for_each(people ^ in_love, ->heartbreak_sim)}
     {for_each(people, ->hunger_sim)}
     {for_each(people, ->cold_sim)}
     {for_each(people, ->tired_sim)}
@@ -100,9 +100,9 @@ You take a break to play the piano and dance, lightening spirits somewhat.
     ~return
 
 === function heartbreak_sim(person)
-    {(in_relationship? person) and LIST_COUNT(in_relationship ^ party) == 1:
+    {(in_love? person) and LIST_COUNT(in_love ^ party) == 1:
         // The person's lover has died.
-        ~unflag(person, in_relationship)
+        ~unflag(person, in_love)
         ~flag(person, heartbroken)
         {name(person)} is now heartbroken after losing their lover. # bad
     }

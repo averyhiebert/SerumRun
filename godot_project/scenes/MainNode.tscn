@@ -61,7 +61,7 @@ margin_bottom = 40.0
 bbcode_enabled = true
 bbcode_text = "[center]You start your journey.[center]
 "
-text = "[center]You start your journey.[center]
+text = "You start your journey.
 "
 scroll_following = true
 
