@@ -103,6 +103,7 @@ You notice a crack forming on the side of your sled.
     {LIST_COUNT(inventory) > 0:
         ~temp item = LIST_RANDOM(inventory)
         Moreover, your {item} seems to have been lost in the crash. # bad
+        ~inventory -= item
     }
     ~sled_currently_damaged = false
     ->->
