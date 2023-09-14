@@ -72,6 +72,7 @@ Your path is blocked by a river. The bridge over the river appears to have colla
         {LIST_COUNT(inventory) > 0:
             ~temp item = LIST_RANDOM(inventory)
             However, your {item} is lost in the stygian depths of the river.
+            ~inventory -= item
         }
     -else:
         Fortunately, the ice holds firm and your entire party makes it across safely.
